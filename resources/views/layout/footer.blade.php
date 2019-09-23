@@ -148,7 +148,7 @@
                 </div>
             </div>
         </div>
-    </footer>
+</footer>
     <!-- End Footer Area -->
     <!-- Login Form -->
     <div class="accountbox-wrapper">
