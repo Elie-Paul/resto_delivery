@@ -5,24 +5,23 @@
                 <li class="active">
                     <a href="{{ route('admin')}}"><i class="menu-icon fa fa-laptop"></i>Tableau de bord </a>
                 </li>
-                <li class="menu-title">Restaurants</li><!-- /.menu-title -->
-                <li>
-                <a href="{{route('resto.list')}}"> <i class="menu-icon fa fa-th"></i>Accès aux restaurants</a>
+                <li class="menu-title">Restaurant</li><!-- /.menu-title -->
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Paramètres de base</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="menu-icon fa fa-address-book-o"></i><a href="{{Route('resto.access')}}">Nom et adresse</a></li>
+                        <li><i class="menu-icon fa fa-cutlery"></i><a href="#">Sélecteur de cuisine</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-gear"></i>Services et heures d'ouverture</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="menu-icon fa fa-pie-chart"></i><a href="{{Route('resto.reserv')}}">Réservation de table</a></li>
+                        <li><i class="menu-icon fa fa-pie-chart"></i><a href="#">Heure d'ouverture</a></li>
+                    </ul>
                 </li>
                 <li>
-                    <a href="{{route('resto.pop')}}"> <i class="menu-icon fa fa-list"></i>Restaurant populaire</a>
-                </li>
-                <li>
-                    <a href="#"> <i class="menu-icon fa fa-th"></i>Forms</a>
-                </li>
-
-                <li class="menu-title">Revenus</li><!-- /.menu-title -->
-
-                <li>
-                    <a href="#"> <i class="menu-icon fa fa-tasks"></i>Icons</a>
-                </li>
-                <li>
-                    <a href="#"> <i class="menu-icon ti-email"></i>Widgets </a>
+                    <a href="#"> <i class="menu-icon fa fa-bars"></i>Menu</a>
                 </li>
             </ul>
         </div><!-- /.navbar-collapse -->

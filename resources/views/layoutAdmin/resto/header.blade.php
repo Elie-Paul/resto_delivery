@@ -68,4 +68,4 @@
 
 <body>
 
-    @include('layoutAdmin.nav')
+    @include('layoutAdmin.resto.nav')
