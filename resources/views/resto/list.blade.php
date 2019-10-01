@@ -19,7 +19,7 @@
                         <div class="page-title">
                             <ol class="breadcrumb text-right">
                                 <li><a href="{{Route('admin')}}">Tableau de bord</a></li>
-                                <li class="active">Liste des restaurants</li>
+                                <li class="active">Name restaurant</li>
                             </ol>
                         </div>
                     </div>
@@ -28,12 +28,12 @@
         </div>
     </div>
 
-    <div class="content">
+    <div class="container">
             <div class="animated fadeIn">
-                <div class="row">
+                <div class="row h-100 justify-content-center align-items-center">
 
                     <div class="col-md-12">
-                        <div class="card">
+                        <div class="card mt-4">
                             <div class="card-header">
                                 <strong class="card-title">Restaurants</strong>
                                 <div class="float-right"><button type="button" class="btn btn-secondary mb-1" data-toggle="modal" data-target="#scrollmodal">Add restaurant</button></div>
@@ -151,14 +151,13 @@
         </div><!-- .content -->
 
         <!-- Modal add Restaurant -->
-
-        <div class="modal fade" id="scrollmodal" tabindex="-1" role="dialog" aria-labelledby="scrollmodalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
+<div class="animated">
+    <div class="modal fade" id="scrollmodal" tabindex="-1" role="dialog" aria-labelledby="scrollmodalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="scrollmodalLabel">Add a restaurant</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
+                        <h4 class="modal-title" id="scrollmodalLabel">Add a restaurant</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
@@ -166,24 +165,24 @@
                             <div class="card">
                                 <div class="card-body card-block">
                                     <form action="#" method="post" class="">
-                                        <div class="form-group">
-                                            <div class="input-group">
-                                                <div class="input-group-addon"><i class="fa fa-user"></i></div>
-                                                <input type="text" id="username" name="username" placeholder="Username" class="form-control">
+                                        <div class="input-group mb-3 mt-2">
+                                            <div class="input-group-prepend">
+                                                <button class="btn btn-secondary" type="button"><i class="menu-icon fa fa-pie-chart"></i></button>
                                             </div>
+                                            <input type="text" class="form-control" id="nom" placeholder="Nom du restaurant*" aria-label="" aria-describedby="basic-addon1">
                                         </div>
-                                        <div class="form-group">
-                                            <div class="input-group">
-                                                <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
-                                                <input type="email" id="email" name="email" placeholder="Email" class="form-control">
+                                        <div class="input-group mb-3 mt-2">
+                                            <div class="input-group-prepend">
+                                                <button class="btn btn-secondary" type="button"><i class="menu-icon fa fa-envelope"></i></button>
                                             </div>
+                                            <input type="email" class="form-control" id="email" placeholder="Email*" aria-label="" aria-describedby="basic-addon1">
                                         </div>
-                                        <div class="form-group">
+                                        <!--div class="form-group">
                                             <div class="input-group">
                                                 <div class="input-group-addon"><i class="fa fa-asterisk"></i></div>
                                                 <input type="password" id="password" name="password" placeholder="Password" class="form-control">
                                             </div>
-                                        </div>
+                                        </div-->
                                         <!--div class="form-actions form-group"><button type="submit" class="btn btn-success btn-sm">Submit</button></div-->
                                     </form>
                                 </div>
@@ -197,6 +196,8 @@
                 </div>
             </div>
         </div>
+</div>
+
         <!-- fin modal add restaurant -->
 
 

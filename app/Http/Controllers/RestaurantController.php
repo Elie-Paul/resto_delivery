@@ -20,4 +20,14 @@ class RestaurantController extends Controller
     {
         return view('resto.access');
     }
+
+    public function openhours()
+    {
+        return view('resto.hours');
+    }
+
+    public function menu()
+    {
+        return view('resto.menu');
+    }
 }

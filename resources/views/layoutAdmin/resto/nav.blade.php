@@ -17,11 +17,11 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-gear"></i>Services et heures d'ouverture</a>
                     <ul class="sub-menu children dropdown-menu">
                         <li><i class="menu-icon fa fa-pie-chart"></i><a href="{{Route('resto.reserv')}}">Réservation de table</a></li>
-                        <li><i class="menu-icon fa fa-pie-chart"></i><a href="#">Heure d'ouverture</a></li>
+                        <li><i class="menu-icon fa fa-pie-chart"></i><a href="{{Route('resto.hours')}}">Heure d'ouverture</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#"> <i class="menu-icon fa fa-bars"></i>Menu</a>
+                    <a href="{{Route('resto.menu')}}"> <i class="menu-icon fa fa-bars"></i>Menu</a>
                 </li>
             </ul>
         </div><!-- /.navbar-collapse -->

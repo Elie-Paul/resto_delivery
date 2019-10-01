@@ -27,7 +27,7 @@
 
 <div class="row h-100 justify-content-center align-items-center">
     <div class="col-xs-8 col-sm-8">
-        <div class="card mt-2">
+        <div class="card mt-4">
             <div class="card-header">
                 <strong>Accepter la réservation </strong>
             </div>
@@ -35,12 +35,14 @@
                 <div class="d-flex-align-items-center md-4">
                     Offrez-vous la réservation de table?
                     <div class="btn-group btn-group-toggle float-right pb-3" data-toggle="buttons">
-                        <label class="btn btn-success active">
+                        <!--label class="btn btn-success active">
                             <input type="radio" name="options" id="option1" autocomplete="off" checked> Oui
-                        </label>
-                        <label class="btn btn-danger">
+                        </label-->
+                        <button class="btn btn-success" id="option1">Oui</button>
+                        <!--label class="btn btn-danger">
                             <input type="radio" name="options" id="option2" autocomplete="off"> Non
-                        </label>
+                        </label-->
+                        <button class="btn btn-secondary" id="option2">Non</button>
                     </div>
                 </div>
                 <div id="accordion">
@@ -57,8 +59,8 @@
                             <div class="card-body">
                                     <strong> Je permets aux clients de faire une réservation de table, mais ... </strong>
                                 <div class="form-group row mt-3">
-                                    <label for="min" class="col-sm-2 col-form-label">Minimum:</label>
-                                    <div class="input-group mb-3 col-sm-10 float-right">
+                                    <label for="min" class="col-form-label">Minimum:</label>
+                                    <div class="input-group mb-3 col-sm-5 ml-auto">
                                         <input type="text" class="form-control col-sm-3" placeholder="2" aria-label="Recipient's username" aria-describedby="basic-addon2">
                                         <div class="input-group-append">
                                             <span class="input-group-text" id="basic-addon2">personnes</span>
@@ -66,38 +68,38 @@
                                     </div>
                                 </div>
                                 <div class="form-group row mt-3">
-                                    <label for="min" class="col-sm-2 col-form-label">Minimum:</label>
-                                    <div class="input-group mb-3 col-sm-10 float-right">
-                                        <input type="text" class="form-control col-sm-3" placeholder="2" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                    <label for="min" class="col-form-label">Seulement pour jusqu'à:</label>
+                                    <div class="input-group mb-3 col-sm-5 ml-auto">
+                                        <input type="text" class="form-control col-sm-3" placeholder="8" aria-label="Recipient's username" aria-describedby="basic-addon2">
                                         <div class="input-group-append">
                                             <span class="input-group-text" id="basic-addon2">personnes</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group row mt-3">
-                                    <label for="min" class="col-sm-2 col-form-label">Minimum:</label>
-                                    <div class="input-group mb-3 col-sm-10 float-right">
-                                        <input type="text" class="form-control col-sm-3" placeholder="2" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                    <label for="min" class="col-form-label">La table est conservée pour:</label>
+                                    <div class="input-group mb-3 col-sm-5 ml-auto">
+                                        <input type="text" class="form-control col-sm-3" placeholder="15" aria-label="Recipient's username" aria-describedby="basic-addon2">
                                         <div class="input-group-append">
-                                            <span class="input-group-text" id="basic-addon2">personnes</span>
+                                            <span class="input-group-text" id="basic-addon2">min</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group row mt-3">
-                                    <label for="min" class="col-sm-2 col-form-label">Minimum:</label>
-                                    <div class="input-group mb-3 col-sm-10 float-right">
-                                        <input type="text" class="form-control col-sm-3" placeholder="2" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                    <label for="min" class="col-form-label">La réservation doit être au moins pour:</label>
+                                    <div class="input-group mb-3 col-sm-5 ml-auto">
+                                        <input type="text" class="form-control col-sm-3" placeholder="15" aria-label="Recipient's username" aria-describedby="basic-addon2">
                                         <div class="input-group-append">
-                                            <span class="input-group-text" id="basic-addon2">personnes</span>
+                                            <span class="input-group-text" id="basic-addon2">min</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group row mt-3">
-                                    <label for="min" class="col-sm-2 col-form-label">Minimum:</label>
-                                    <div class="input-group mb-3 col-sm-10 float-right">
-                                        <input type="text" class="form-control col-sm-3" placeholder="2" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                    <label for="min" class="col-form-label">Et peut pas venir plus que:</label>
+                                    <div class="input-group mb-3 col-sm-5 ml-auto">
+                                        <input type="text" class="form-control col-sm-3" placeholder="8" aria-label="Recipient's username" aria-describedby="basic-addon2">
                                         <div class="input-group-append">
-                                            <span class="input-group-text" id="basic-addon2">personnes</span>
+                                            <span class="input-group-text" id="basic-addon2">jours</span>
                                         </div>
                                     </div>
                                 </div>
@@ -112,4 +114,16 @@
         </div>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script>
+    jQuery(document).ready(function($){
+
+     $( "#option2" ).click(function() {
+        $("#collapseOne").hide();
+        });
+    $( "#option1" ).click(function() {
+        $("#collapseOne").show();
+        });
+    });
+</script>
 @endsection
