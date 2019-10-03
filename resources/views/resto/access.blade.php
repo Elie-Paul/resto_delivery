@@ -95,7 +95,7 @@
                     <input type="text" class="form-control" placeholder="Numéro de la rue" aria-label="" aria-describedby="basic-addon1">
                 </div>
                 <div>
-                    <a class="btn btn-info float-right mr-2 mb-2" href="#" role="button">Suivant  <i class="fa fa-arrow-right"></i></a>
+                    <a class="btn btn-info float-right mr-2 mb-2" id="next" href="{{Route('resto.cuisine')}}" role="button"><b>Suivant</b>  <i class="fa fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>

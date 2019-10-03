@@ -10,7 +10,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Paramètres de base</a>
                     <ul class="sub-menu children dropdown-menu">
                         <li><i class="menu-icon fa fa-address-book-o"></i><a href="{{Route('resto.access')}}">Nom et adresse</a></li>
-                        <li><i class="menu-icon fa fa-cutlery"></i><a href="#">Sélecteur de cuisine</a></li>
+                        <li><i class="menu-icon fa fa-cutlery"></i><a href="{{Route('resto.cuisine')}}">Sélecteur de cuisine</a></li>
                     </ul>
                 </li>
                 <li class="menu-item-has-children dropdown">
@@ -34,8 +34,8 @@
     <header id="header" class="header">
         <div class="top-left">
             <div class="navbar-header">
-                <a class="navbar-brand" href="./"><img src="{{asset('images/logo.png')}}" alt="Logo"></a>
-                <a class="navbar-brand hidden" href="./"><img src="{{asset('images/logo2.png')}}" alt="Logo"></a>
+                <a class="navbar-brand" href="{{ route('admin')}}"><img src="{{asset('images/logo.png')}}" alt="Logo"></a>
+                <a class="navbar-brand hidden" href="{{ route('admin')}}"><img src="{{asset('images/logo2.png')}}" alt="Logo"></a>
                 <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
             </div>
         </div>

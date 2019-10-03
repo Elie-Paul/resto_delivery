@@ -125,7 +125,7 @@
                 </div>
             </div>
             <div class="rows">
-                <a class="btn btn-info float-right mr-4 mb-2" href="#" role="button">Suivant  <i class="fa fa-arrow-right"></i></a>
+                <a class="btn btn-info float-right mr-4 mb-2" href="{{Route('resto.menu')}}" id="next" role="button"><b>Suivant</b>   <i class="fa fa-arrow-right"></i></a>
             </div>
         </div>
     </div>

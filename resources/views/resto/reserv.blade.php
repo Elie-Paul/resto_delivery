@@ -61,7 +61,7 @@
                                 <div class="form-group row mt-3">
                                     <label for="min" class="col-form-label">Minimum:</label>
                                     <div class="input-group mb-3 col-sm-5 ml-auto">
-                                        <input type="text" class="form-control col-sm-3" placeholder="2" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                        <input type="number" class="form-control col-sm-3" placeholder="2" aria-label="Recipient's username" aria-describedby="basic-addon2">
                                         <div class="input-group-append">
                                             <span class="input-group-text" id="basic-addon2">personnes</span>
                                         </div>
@@ -70,7 +70,7 @@
                                 <div class="form-group row mt-3">
                                     <label for="min" class="col-form-label">Seulement pour jusqu'à:</label>
                                     <div class="input-group mb-3 col-sm-5 ml-auto">
-                                        <input type="text" class="form-control col-sm-3" placeholder="8" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                        <input type="number" class="form-control col-sm-3" placeholder="8" aria-label="Recipient's username" aria-describedby="basic-addon2">
                                         <div class="input-group-append">
                                             <span class="input-group-text" id="basic-addon2">personnes</span>
                                         </div>
@@ -79,7 +79,7 @@
                                 <div class="form-group row mt-3">
                                     <label for="min" class="col-form-label">La table est conservée pour:</label>
                                     <div class="input-group mb-3 col-sm-5 ml-auto">
-                                        <input type="text" class="form-control col-sm-3" placeholder="15" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                        <input type="number" class="form-control col-sm-3" placeholder="15" aria-label="Recipient's username" aria-describedby="basic-addon2">
                                         <div class="input-group-append">
                                             <span class="input-group-text" id="basic-addon2">min</span>
                                         </div>
@@ -88,7 +88,7 @@
                                 <div class="form-group row mt-3">
                                     <label for="min" class="col-form-label">La réservation doit être au moins pour:</label>
                                     <div class="input-group mb-3 col-sm-5 ml-auto">
-                                        <input type="text" class="form-control col-sm-3" placeholder="15" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                        <input type="number" class="form-control col-sm-3" placeholder="15" aria-label="Recipient's username" aria-describedby="basic-addon2">
                                         <div class="input-group-append">
                                             <span class="input-group-text" id="basic-addon2">min</span>
                                         </div>
@@ -97,7 +97,7 @@
                                 <div class="form-group row mt-3">
                                     <label for="min" class="col-form-label">Et peut pas venir plus que:</label>
                                     <div class="input-group mb-3 col-sm-5 ml-auto">
-                                        <input type="text" class="form-control col-sm-3" placeholder="8" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                        <input type="number" class="form-control col-sm-3" placeholder="8" aria-label="Recipient's username" aria-describedby="basic-addon2">
                                         <div class="input-group-append">
                                             <span class="input-group-text" id="basic-addon2">jours</span>
                                         </div>
@@ -109,7 +109,7 @@
                 </div>
             </div>
             <div class="rows">
-                <a class="btn btn-info float-right mr-2 mb-2" href="#" role="button">Suivant  <i class="fa fa-arrow-right"></i></a>
+                <a class="btn btn-info float-right mr-2 mb-2" href="{{Route('resto.hours')}}" id="next" role="button"><b>Suivant</b>   <i class="fa fa-arrow-right"></i></a>
             </div>
         </div>
     </div>

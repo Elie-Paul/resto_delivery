@@ -169,13 +169,13 @@
                                             <div class="input-group-prepend">
                                                 <button class="btn btn-secondary" type="button"><i class="menu-icon fa fa-pie-chart"></i></button>
                                             </div>
-                                            <input type="text" class="form-control" id="nom" placeholder="Nom du restaurant*" aria-label="" aria-describedby="basic-addon1">
+                                            <input type="text" class="form-control" id="nom" placeholder="Nom du restaurant*" aria-label="" aria-describedby="basic-addon1" required>
                                         </div>
                                         <div class="input-group mb-3 mt-2">
                                             <div class="input-group-prepend">
                                                 <button class="btn btn-secondary" type="button"><i class="menu-icon fa fa-envelope"></i></button>
                                             </div>
-                                            <input type="email" class="form-control" id="email" placeholder="Email*" aria-label="" aria-describedby="basic-addon1">
+                                            <input type="email" class="form-control" id="email" placeholder="Email*" aria-label="" aria-describedby="basic-addon1" required>
                                         </div>
                                         <!--div class="form-group">
                                             <div class="input-group">
@@ -190,7 +190,7 @@
                         </p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-success">create a account</button>
+                        <button type="button" id="addRest" class="btn btn-success">create a account</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                     </div>
                 </div>

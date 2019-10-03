@@ -29,3 +29,5 @@ Route::get('/admin/resto/access/reservation', 'ReservationController@index')->na
 Route::get('/admin/resto/access/openhours', 'RestaurantController@openhours')->name('resto.hours');
 Route::get('/admin/resto/access/menu', 'RestaurantController@menu')->name('resto.menu');
 
+Route::get('/admin/resto/access/cuisine', 'CuisineController@index')->name('resto.cuisine');
+
