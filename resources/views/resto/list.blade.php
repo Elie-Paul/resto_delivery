@@ -45,100 +45,21 @@
                                             <th>Nom </th>
                                             <th>Spécialité</th>
                                             <th>Tel</th>
-                                            <th>Accès</th>
+                                            <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td><a class="btn btn-success " href="{{Route('resto.access')}}" role="button">Accès</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Garrett Winters</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <td><a class="btn btn-success" href="#" role="button">Accès</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Ashton Cox</td>
-                                            <td>Junior Technical Author</td>
-                                            <td>San Francisco</td>
-                                            <td><a class="btn btn-success" href="#" role="button">Accès</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Cedric Kelly</td>
-                                            <td>Senior Javascript Developer</td>
-                                            <td>Edinburgh</td>
-                                            <td><a class="btn btn-success" href="#" role="button">Accès</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Airi Satou</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <td><a class="btn btn-success" href="#" role="button">Accès</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Brielle Williamson</td>
-                                            <td>Integration Specialist</td>
-                                            <td>New York</td>
-                                            <td><a class="btn btn-success" href="#" role="button">Accès</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Herrod Chandler</td>
-                                            <td>Sales Assistant</td>
-                                            <td>San Francisco</td>
-                                            <td><a class="btn btn-success" href="#" role="button">Accès</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Rhona Davidson</td>
-                                            <td>Integration Specialist</td>
-                                            <td>Tokyo</td>
-                                            <td><a class="btn btn-success" href="#" role="button">Accès</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Colleen Hurst</td>
-                                            <td>Javascript Developer</td>
-                                            <td>San Francisco</td>
-                                            <td><a class="btn btn-success" href="#" role="button">Accès</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Sonya Frost</td>
-                                            <td>Software Engineer</td>
-                                            <td>Edinburgh</td>
-                                            <td><a class="btn btn-success" href="#" role="button">Accès</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Jena Gaines</td>
-                                            <td>Office Manager</td>
-                                            <td>London</td>
-                                            <td><a class="btn btn-success" href="#" role="button">Accès</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Quinn Flynn</td>
-                                            <td>Support Lead</td>
-                                            <td>Edinburgh</td>
-                                            <td><a class="btn btn-success" href="#" role="button">Accès</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Charde Marshall</td>
-                                            <td>Regional Director</td>
-                                            <td>San Francisco</td>
-                                            <td><a class="btn btn-success" href="#" role="button">Accès</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Haley Kennedy</td>
-                                            <td>Senior Marketing Designer</td>
-                                            <td>London</td>
-                                            <td><a class="btn btn-success" href="#" role="button">Accès</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Tatyana Fitzpatrick</td>
-                                            <td>Regional Director</td>
-                                            <td>London</td>
-                                            <td><a class="btn btn-success" href="#" role="button">Accès</a></td>
-                                        </tr>
+                                        @foreach ($restaurants as $restaurant)
+                                            <tr>
+                                                <td>{{ $restaurant->nom }}</td>
+                                                <td>Cuisine_restaurant</td>
+                                                <td>{{$restaurant->tel1}} - {{$restaurant->tel2}}</td>
+                                                <td>
+                                                    <a class="btn btn-success" href="{{Route('resto.access', ['restaurant' => $restaurant->id])}}" role="button">Accès</a>
+                                                    <!--a class="btn btn-success" href="{{Route('resto.access', ['restaurant' => $restaurant->id])}}" role="button">Accès</a-->
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -164,19 +85,21 @@
                         <p>
                             <div class="card">
                                 <div class="card-body card-block">
-                                    <form action="#" method="post" class="">
+                                    <form method="POST" action="{{ Route('resto.store') }}">
+                                        @csrf
                                         <div class="input-group mb-3 mt-2">
                                             <div class="input-group-prepend">
                                                 <button class="btn btn-secondary" type="button"><i class="menu-icon fa fa-pie-chart"></i></button>
                                             </div>
-                                            <input type="text" class="form-control" id="nom" placeholder="Nom du restaurant*" aria-label="" aria-describedby="basic-addon1" required>
+                                            <input type="text" class="form-control" id="nom" placeholder="Nom du restaurant *" aria-label="" aria-describedby="basic-addon1" required>
                                         </div>
                                         <div class="input-group mb-3 mt-2">
                                             <div class="input-group-prepend">
                                                 <button class="btn btn-secondary" type="button"><i class="menu-icon fa fa-envelope"></i></button>
                                             </div>
-                                            <input type="email" class="form-control" id="email" placeholder="Email*" aria-label="" aria-describedby="basic-addon1" required>
+                                            <input type="email" class="form-control" id="email" placeholder="Email *" aria-label="" aria-describedby="basic-addon1" required>
                                         </div>
+                                        <!--button type="submit" id="addRest" class="btn btn-success">Créer</button-->
                                         <!--div class="form-group">
                                             <div class="input-group">
                                                 <div class="input-group-addon"><i class="fa fa-asterisk"></i></div>
@@ -190,8 +113,8 @@
                         </p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" id="addRest" class="btn btn-success">create a account</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="button" id="addRest" class="btn btn-success">Créer</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
                     </div>
                 </div>
             </div>
@@ -215,7 +138,32 @@
 
     <script type="text/javascript">
         $(document).ready(function() {
-          $('#bootstrap-data-table-export').DataTable();
+         // $('#bootstrap-data-table-export').DataTable();
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $("#addRest").click(function(e){
+                e.preventDefault();
+
+                let nom = $("#nom").val();
+                let email = $("#email").val();
+
+                console.log(nom+"-"+email);
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/restaurants',
+                    data: {nom:nom, email:email},
+                    success: function(data){
+                        alert("success");
+                        window.location.href = "{{Route('resto.access', ['restaurant' => $restaurant->id])}}" ;
+                    }
+                });
+
+            });
       } );
   </script>
 

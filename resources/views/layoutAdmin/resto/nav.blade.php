@@ -9,14 +9,14 @@
                 <li class="menu-item-has-children dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Paramètres de base</a>
                     <ul class="sub-menu children dropdown-menu">
-                        <li><i class="menu-icon fa fa-address-book-o"></i><a href="{{Route('resto.access')}}">Nom et adresse</a></li>
-                        <li><i class="menu-icon fa fa-cutlery"></i><a href="{{Route('resto.cuisine')}}">Sélecteur de cuisine</a></li>
+                        <li><i class="menu-icon fa fa-address-book-o"></i><a href="{{Route('resto.access', ['restaurant' => $restaurant->id])}}">Nom et adresse</a></li>
+                        <li><i class="menu-icon fa fa-cutlery"></i><a href="{{Route('resto.cuisine', ['restaurant' => $restaurant->id])}}">Sélecteur de cuisine</a></li>
                     </ul>
                 </li>
                 <li class="menu-item-has-children dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-gear"></i>Services et heures d'ouverture</a>
                     <ul class="sub-menu children dropdown-menu">
-                        <li><i class="menu-icon fa fa-pie-chart"></i><a href="{{Route('resto.reserv')}}">Réservation de table</a></li>
+                        <li><i class="menu-icon fa fa-pie-chart"></i><a href="{{Route('resto.reserv', ['restaurant' => $restaurant->id])}}">Réservation de table</a></li>
                         <li><i class="menu-icon fa fa-pie-chart"></i><a href="{{Route('resto.hours')}}">Heure d'ouverture</a></li>
                     </ul>
                 </li>

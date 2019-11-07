@@ -22,12 +22,21 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/admin', 'AdminController@index')->name('admin');
 
 Route::get('/admin/resto/list', 'RestaurantController@index')->name('resto.list');
-Route::get('/admin/resto/pop', 'RestaurantController@populaire')->name('resto.pop');
-Route::get('/admin/resto/access', 'RestaurantController@access')->name('resto.access');
+Route::post('/restaurants', 'RestaurantController@store')->name('resto.store');
 
-Route::get('/admin/resto/access/reservation', 'ReservationController@index')->name('resto.reserv');
+Route::get('/admin/resto/pop', 'RestaurantController@populaire')->name('resto.pop');
+
+Route::get('/admin/resto/{restaurant}/access', 'RestaurantController@access')->name('resto.access');
+Route::patch('/admin/{restaurant}', 'RestaurantController@update')->name('resto.update');
+
+Route::get('/admin/resto/{restaurant}/access/reservation', 'ReservationController@index')->name('resto.reserv');
+
 Route::get('/admin/resto/access/openhours', 'RestaurantController@openhours')->name('resto.hours');
 Route::get('/admin/resto/access/menu', 'RestaurantController@menu')->name('resto.menu');
 
-Route::get('/admin/resto/access/cuisine', 'CuisineController@index')->name('resto.cuisine');
+Route::get('/admin/resto/{restaurant}/access/cuisine', 'CuisineController@index')->name('resto.cuisine');
+Route::post('/cuisines/{restaurant}', 'CuisineController@store')->name('cuisine.store');
+
+Route::delete('/delete/{restaurant}/{cuisine}', 'CuisineController@delete')->name('cuisine.delete');
+Route::post('/cuisine/{restaurant}/{id}', 'CuisineController@ajouter')->name('cuisine.ajouter');
 
