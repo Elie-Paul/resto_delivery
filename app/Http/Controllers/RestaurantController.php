@@ -77,8 +77,8 @@ class RestaurantController extends Controller
         return view('resto.hours');
     }
 
-    public function menu()
+    public function menu(Restaurant $restaurant)
     {
-        return view('resto.menu');
+        return view('resto.menu', compact('restaurant'));
     }
 }

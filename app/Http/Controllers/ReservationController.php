@@ -10,6 +10,6 @@ class ReservationController extends Controller
     public function index(Restaurant $restaurant)
     {
 
-        return view('resto.reserv', compact($restaurant));
+        return view('resto.reserv', compact('restaurant'));
     }
 }

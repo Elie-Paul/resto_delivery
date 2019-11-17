@@ -67,58 +67,30 @@
 </div>
 <div class="container">
     <div class="card-deck">
-        <div class="card">
-            <img src="{{asset('images/beef/1.jpg')}}" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title"><b>Card title</b></h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-                <button class="btn btn-secondary" data-toggle="modal" data-target="#modalarticle">Ajouter un article</button>
-            </div>
-            <div class="card-footer">
-                <div class="rows">
-                    <div class="d-flex justify-content-between">
-                        <button type="button" class="btn-action"><b><i class="fa fa-trash-o"></i> Delete</b></button>
-                        <button type="button" class="btn-action"><b><i class="fa fa-edit"></i> Edit</b></button>
-                        <button type="button" class="btn-action"><b><i class="fa fa-eye"></i> View</b></button>
+        @foreach ($categories as $category)
+            <div class="card">
+                <img src="{{ asset('storage') . '/' . $category->image }}" class="card-img-top" alt>
+                <div class="card-body">
+                    <h5 class="card-title"><b>{{$category->nom}}</b></h5>
+                    <p class="card-text">{{$category->description}}</p>
+                    <button class="btn btn-secondary" data-toggle="modal" data-target="#modalarticle">Ajouter un article</button>
+                </div>
+                <div class="card-footer">
+                    <div class="rows">
+                        <div class="d-flex justify-content-between">
+                            <form action="{{ route('category.destroy', $category->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn-action"><b><i class="fa fa-trash-o"></i> Delete</b></button>
+                            </form>
+                            <button type="button" class="btn-action"><b><i class="fa fa-edit"></i> Edit</b></button>
+                            <button type="button" class="btn-action"><b><i class="fa fa-eye"></i> View</b></button>
+                        </div>
                     </div>
-                </div>
-            <!--small class="text-muted">Last updated 3 mins ago</small-->
-            </div>
-        </div>
-        <div class="card">
-            <img src="{{asset('images/beef/1.jpg')}}" class="card-img-top" alt="...">
-            <div class="card-body">
-            <h5 class="card-title"><b>Card title</b></h5>
-            <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-            <button class="btn btn-secondary" data-toggle="modal" data-target="#modalarticle">Ajouter un article</button>
-            </div>
-            <div class="card-footer">
-            <div class="rows">
-                <div class="d-flex justify-content-between">
-                    <button type="button" class="btn-action"><b><i class="fa fa-trash-o"></i> Delete</b></button>
-                    <button type="button" class="btn-action"><b><i class="fa fa-edit"></i> Edit</b></button>
-                    <button type="button" class="btn-action"><b><i class="fa fa-eye"></i> View</b></button>
+                <!--small class="text-muted">Last updated 3 mins ago</small-->
                 </div>
             </div>
-            </div>
-        </div>
-        <div class="card">
-            <img src="{{asset('images/beef/1.jpg')}}" class="card-img-top" alt="...">
-            <div class="card-body">
-            <h5 class="card-title"><b>Card title</b></h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-            <button class="btn btn-secondary" data-toggle="modal" data-target="#modalarticle">Ajouter un article</button>
-            </div>
-            <div class="card-footer">
-            <div class="rows">
-                    <div class="d-flex justify-content-between">
-                        <button type="button" class="btn-action"><b><i class="fa fa-trash-o"></i> Delete</b></button>
-                        <button type="button" class="btn-action"><b><i class="fa fa-edit"></i> Edit</b></button>
-                        <button type="button" class="btn-action"><b><i class="fa fa-eye"></i> View</b></button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @endforeach
     </div>
 </div>
 <div class="row">
@@ -152,7 +124,7 @@
                             <p>
                                 <div class="card">
                                     <div class="card-body card-block">
-                                        <form action="{{ Route('category.store') }}" method="POST" enctype="multipart/form-data">
+                                        <form action="{{ Route('category.store') }}" id="form1" method="POST" enctype="multipart/form-data">
                                             @csrf
                                             <div class="input-group mb-3 mt-2">
                                                 <div class="input-group-prepend">
@@ -175,15 +147,17 @@
                                                     <label class="custom-file-label" for="inputGroupFile01">Choisir le fichier</label>
                                                 </div>
                                             </div>
+                                            <button type="submit" class="btn btn-success" id="addCategory"><span class="fa fa-send"> Ajouter </span></button>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuller</button>
                                         </form>
                                     </div>
                                 </div>
                             </p>
                         </div>
-                        <div class="modal-footer">
+                        <!--div class="modal-footer">
                             <button type="button" class="btn btn-success" id="addCategory"><span class="fa fa-send"> Ajouter </span></button>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuller</button>
-                        </div>
+                        </div-->
                     </div>
                 </div>
             </div>
@@ -343,12 +317,15 @@
     });
 
     // Ajouter une categorie
-    $("#addCategory").click(function(e){
+    /*$("#addCategory").click(function(e){
         e.preventDefault();
 
         let nom = $("#nom").val();
         let description = $("#descriptionCat").val();
         let image = $("#inputGroupFile01").val();
+
+        //let formData = new FormData();
+        //formData.append('image',$('input[type=file]')[0].files[0]);
 
         console.log(nom+'---'+description+'-----'+image);
 
@@ -356,12 +333,13 @@
             type: 'POST',
             url: '{{ Route('category.store') }}',
             data: {nom:nom, description:description, image:image},
+            //data: formData,
             success: function(data){
                 alert("success");
                 window.location.reload() ;
             }
         });
 
-    });
+    });*/
 </script>
 @endsection

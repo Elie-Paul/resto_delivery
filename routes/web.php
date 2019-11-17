@@ -32,7 +32,16 @@ Route::patch('/admin/{restaurant}', 'RestaurantController@update')->name('resto.
 Route::get('/admin/resto/{restaurant}/access/reservation', 'ReservationController@index')->name('resto.reserv');
 
 Route::get('/admin/resto/access/openhours', 'RestaurantController@openhours')->name('resto.hours');
-Route::get('/admin/resto/access/menu', 'RestaurantController@menu')->name('resto.menu');
+
+Route::get('/admin/resto/{restaurant}/access/menu', 'RestaurantController@menu')->name('resto.menu');
+
+// CRUD Category
+Route::get('/admin/resto/{restaurant}/menu/category', 'CategoryController@index')->name('category.index');
+Route::post('/admin/category', 'CategoryController@store')->name('category.store');
+Route::get('/admin/category/{category}/edit', 'CategoryController@edit')->name('category.edit');
+Route::patch('/admin/category/{category}', 'CategoryController@update')->name('category.update');
+Route::delete('/admin/category/{category}', 'CategoryController@destroy')->name('category.destroy');
+
 
 Route::get('/admin/resto/{restaurant}/access/cuisine', 'CuisineController@index')->name('resto.cuisine');
 Route::post('/cuisines/{restaurant}', 'CuisineController@store')->name('cuisine.store');

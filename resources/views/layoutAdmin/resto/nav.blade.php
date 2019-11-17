@@ -21,7 +21,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="{{Route('resto.menu')}}"> <i class="menu-icon fa fa-bars"></i>Menu</a>
+                    <a href="{{Route('category.index', ['restaurant' => $restaurant->id])}}"> <i class="menu-icon fa fa-bars"></i>Menu</a>
                 </li>
             </ul>
         </div><!-- /.navbar-collapse -->

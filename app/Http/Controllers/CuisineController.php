@@ -26,7 +26,7 @@ class CuisineController extends Controller
 
         $cuisine->save();
 
-        // Jouter dans la table d'association cuisine_restauarant
+        // Ajouter dans la table d'association cuisine_restauarant
         $restaurant->cuisines()->attach($cuisine->id);
 
         return Response()->json($cuisine);

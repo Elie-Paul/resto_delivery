@@ -159,7 +159,7 @@
                     data: {nom:nom, email:email},
                     success: function(data){
                         alert("success");
-                        window.location.href = "{{Route('resto.access', ['restaurant' => $restaurant->id])}}" ;
+                        window.location.reload() ;
                     }
                 });
 

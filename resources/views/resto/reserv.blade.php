@@ -16,7 +16,7 @@
                     <div class="page-title">
                         <ol class="breadcrumb text-right">
                             <li><a href="{{Route('admin')}}">Tableau de bord</a></li>
-                            <li class="active">Name restaurant</li>
+                            <li class="active">{{$restaurant->nom}}</li>
                         </ol>
                     </div>
                 </div>
