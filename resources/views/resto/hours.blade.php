@@ -34,10 +34,10 @@
                 <strong>Quand êtes-vous ouvert? </strong>
             </div>
             <div class="card-body">
-                <div class="d-flex-align-items-center md-4">
-                    Heures d'ouverture
+                <div class="d-flex-align-items-center md-4 mb-2">
+                    Image du restaurant
                 </div>
-                <div class="border rounded bg-white mt-3">
+                <!--div class="border rounded bg-white mt-3">
                     <div class="d-flex mb-6" id="heure">
                         <div class="font-weight-blod mt-3 ml-2"><span id="days">Lundi-Dimanche:</span></div>
                         <div class="ml-auto mr-6 mt-3">11:00-23:00</div>
@@ -52,7 +52,7 @@
                             </button>
                         </div>
                     </div>
-                    <!-- days week -->
+
                     <div class="collapse" id="collapse">
                         <div class="d-flex mb-6 align-items-start">
                                 <div class="row mb-0">
@@ -117,15 +117,63 @@
                                 </div>
                             </div>
                     </div>
-                    <!-- End days week -->
+
                     <div class="d-flex align-items-center mt-5 mb-2 ml-2">
                         <button id="ajout" class="btn btn-secondary">Ajouter</button>
                         <button id="annul" onclick="save()" class="btn btn-danger ml-3" style="display:none;">Annuler</button>
                     </div>
-                </div>
+                </div-->
+                <form method="POST" action="#" enctype="multipart/form-data">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" name="image" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" accept="image/jpeg, image/png">
+                        <label class="custom-file-label" for="inputGroupFile01">Choisir une image du restaurant</label>
+                    </div>
+                    <div class="d-flex-align-items-center md-4 mt-4">
+                        Heures d'ouverture :
+                    </div>
+                    <div class="form-row">
+                      <div class="form-group col-md-3 mt-2">
+                            <label> Du </label>
+                        <select id="inputState" class="form-control">
+                            <option selected>Choose...</option>
+                            <option selected disabled>Jours</option>
+                            <option value="1">Lundi</option>
+                            <option value="2">Mardi</option>
+                            <option value="3">Mercredi</option>
+                            <option value="3">Jeudi</option>
+                            <option value="3">Vendredi</option>
+                            <option value="3">Samedi</option>
+                            <option value="3">Dimanche</option>
+                        </select>
+                      </div>
+                      <div class="form-group col-md-3 mt-2">
+                            <label> AU </label>
+                        <select id="inputState" class="form-control">
+                          <option selected>Choose...</option>
+                          <option selected disabled>Jours</option>
+                            <option value="1">Lundi</option>
+                            <option value="2">Mardi</option>
+                            <option value="3">Mercredi</option>
+                            <option value="3">Jeudi</option>
+                            <option value="3">Vendredi</option>
+                            <option value="3">Samedi</option>
+                            <option value="3">Dimanche</option>
+                        </select>
+                      </div>
+                      <div class="form-group date col-md-3 mt-2" id='datetimepicker2'>
+                            <label> A partir de  </label>
+                        <input placeholder="Selected time" type="time" id="time1" class="form-control">
+                      </div>
+                      <div class="form-group date col-md-3 mt-2" id='datetimepicker2'>
+                            <label> Jusqu'à  </label>
+                        <input placeholder="Selected time" type="time" id="time" class="form-control">
+                      </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Ajouter</button>
+                  </form>
             </div>
             <div class="rows">
-                <a class="btn btn-info float-right mr-4 mb-2" href="{{Route('resto.menu')}}" id="next" role="button"><b>Suivant</b>   <i class="fa fa-arrow-right"></i></a>
+                <a class="btn btn-info float-right mr-4 mb-2" href="{{Route('category.index', ['restaurant' => $restaurant->id])}}" id="next" role="button"><b>Suivant</b>   <i class="fa fa-arrow-right"></i></a>
             </div>
         </div>
     </div>

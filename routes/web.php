@@ -28,24 +28,30 @@ Route::get('/admin/resto/pop', 'RestaurantController@populaire')->name('resto.po
 
 Route::get('/admin/resto/{restaurant}/access', 'RestaurantController@access')->name('resto.access');
 Route::patch('/admin/{restaurant}', 'RestaurantController@update')->name('resto.update');
+Route::patch('/admin/{restaurant}', 'RestaurantController@update_bis')->name('resto.update_bis');
 
 Route::get('/admin/resto/{restaurant}/access/reservation', 'ReservationController@index')->name('resto.reserv');
 
-Route::get('/admin/resto/access/openhours', 'RestaurantController@openhours')->name('resto.hours');
+Route::get('/admin/resto/{restaurant}/access/openhours', 'RestaurantController@openhours')->name('resto.hours');
 
 Route::get('/admin/resto/{restaurant}/access/menu', 'RestaurantController@menu')->name('resto.menu');
 
 // CRUD Category
 Route::get('/admin/resto/{restaurant}/menu/category', 'CategoryController@index')->name('category.index');
-Route::post('/admin/category', 'CategoryController@store')->name('category.store');
+Route::post('/admin/category/{restaurant}', 'CategoryController@store')->name('category.store');
 Route::get('/admin/category/{category}/edit', 'CategoryController@edit')->name('category.edit');
 Route::patch('/admin/category/{category}', 'CategoryController@update')->name('category.update');
 Route::delete('/admin/category/{category}', 'CategoryController@destroy')->name('category.destroy');
+
+// CRUD ARTICLE
+//Route::get('/admin/resto/{restaurant}/menu/{category}/article', 'ArticleController@index')->name('article.index');
+//Route::post('/admin/article/{category}', 'ArticleController@store')->name('article.store');
+Route::post('/admin/article', 'ArticleController@store')->name('article.store');
 
 
 Route::get('/admin/resto/{restaurant}/access/cuisine', 'CuisineController@index')->name('resto.cuisine');
 Route::post('/cuisines/{restaurant}', 'CuisineController@store')->name('cuisine.store');
 
 Route::delete('/delete/{restaurant}/{cuisine}', 'CuisineController@delete')->name('cuisine.delete');
-Route::post('/cuisine/{restaurant}/{id}', 'CuisineController@ajouter')->name('cuisine.ajouter');
+Route::post('/cuisine/{restaurant}', 'CuisineController@ajouter')->name('cuisine.ajouter');
 

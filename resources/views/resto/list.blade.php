@@ -19,7 +19,7 @@
                         <div class="page-title">
                             <ol class="breadcrumb text-right">
                                 <li><a href="{{Route('admin')}}">Tableau de bord</a></li>
-                                <li class="active">Name restaurant</li>
+                                <!--li class="active">Name restaurant</li-->
                             </ol>
                         </div>
                     </div>
@@ -52,8 +52,12 @@
                                         @foreach ($restaurants as $restaurant)
                                             <tr>
                                                 <td>{{ $restaurant->nom }}</td>
-                                                <td>Cuisine_restaurant</td>
-                                                <td>{{$restaurant->tel1}} - {{$restaurant->tel2}}</td>
+                                                <td>
+                                                    @foreach ($restaurant->cuisines as $restocuisine)
+                                                        {{$restocuisine->libelle}} ,
+                                                    @endforeach
+                                                </td>
+                                                <td>{{$restaurant->tel1}}</td>
                                                 <td>
                                                     <a class="btn btn-success" href="{{Route('resto.access', ['restaurant' => $restaurant->id])}}" role="button">Accès</a>
                                                     <!--a class="btn btn-success" href="{{Route('resto.access', ['restaurant' => $restaurant->id])}}" role="button">Accès</a-->

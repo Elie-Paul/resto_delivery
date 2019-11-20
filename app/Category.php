@@ -11,11 +11,17 @@ class Category extends Model
     protected $fillable = [
         'nom',
         'description',
-        'image'
+        'image',
+        'restaurant_id',
     ];
 
     public function restaurant()
     {
         return $this->belongsTo(Restaurant::class);
+    }
+
+    public function articles()
+    {
+        return $this->hasMany(Article::class);
     }
 }

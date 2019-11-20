@@ -72,9 +72,32 @@ class RestaurantController extends Controller
         //return redirect()->route('profiles.list');
     }
 
-    public function openhours()
+    public function update_bis(Request $request, Restaurant $restaurant)
     {
-        return view('resto.hours');
+        $request->validate([
+            'nom'=> 'string',
+            'tel1'=> 'string',
+            'ville' => 'string',
+            'code_postal' => 'string',
+            'num_rue' => 'string'
+        ]);
+
+        $restaurant->nom = $request->get('nom');
+        $restaurant->tel1 = $request->get('tel1');
+        //$restaurant->tel2 = $request->get('tel2');
+        $restaurant->ville = $request->get('ville');
+        $restaurant->code_postal = $request->get('code_postal');
+        $restaurant->num_rue = $request->get('num_rue');
+
+        $restaurant->save();
+
+        return back();
+        //return redirect()->route('profiles.list');
+    }
+
+    public function openhours(Restaurant $restaurant)
+    {
+        return view('resto.hours', compact('restaurant'));
     }
 
     public function menu(Restaurant $restaurant)

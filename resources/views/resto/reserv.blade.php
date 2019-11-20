@@ -109,7 +109,7 @@
                 </div>
             </div>
             <div class="rows">
-                <a class="btn btn-info float-right mr-2 mb-2" href="{{Route('resto.hours')}}" id="next" role="button"><b>Suivant</b>   <i class="fa fa-arrow-right"></i></a>
+                <a class="btn btn-info float-right mr-2 mb-2" href="{{Route('resto.hours', ['restaurant' => $restaurant->id])}}" id="next" role="button"><b>Suivant</b>   <i class="fa fa-arrow-right"></i></a>
             </div>
         </div>
     </div>

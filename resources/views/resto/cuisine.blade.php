@@ -71,7 +71,7 @@
                     </table>
                     <hr>
                     <div class="d-flex justify-content-center">
-                        <form method="POST" action="{{ Route('cuisine.ajouter', ['restaurant' => $restaurant->id, 'id' => $cuisine->id ]) }}">
+                        <form method="POST" action="{{ Route('cuisine.ajouter', ['restaurant' => $restaurant->id ]) }}">
                             @csrf
                             <div class="form-row align-items-cente">
                                 <div class="col-sm-9 mb-2">

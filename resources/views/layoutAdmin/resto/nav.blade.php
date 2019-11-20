@@ -14,10 +14,10 @@
                     </ul>
                 </li>
                 <li class="menu-item-has-children dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-gear"></i>Services et heures d'ouverture</a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-gear"></i>Services</a>
                     <ul class="sub-menu children dropdown-menu">
                         <li><i class="menu-icon fa fa-pie-chart"></i><a href="{{Route('resto.reserv', ['restaurant' => $restaurant->id])}}">Réservation de table</a></li>
-                        <li><i class="menu-icon fa fa-pie-chart"></i><a href="{{Route('resto.hours')}}">Heure d'ouverture</a></li>
+                        <li><i class="menu-icon fa fa-pie-chart"></i><a href="{{Route('resto.hours', ['restaurant' => $restaurant->id])}}">Heure d'ouverture</a></li>
                     </ul>
                 </li>
                 <li>

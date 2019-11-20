@@ -6,13 +6,14 @@ use App\Category;
 use App\Restaurant;
 use Facade\FlareClient\Http\Response;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Intervention\Image\Facades\Image;
 
 class CategoryController extends Controller
 {
     public function index(Restaurant $restaurant)
     {
-        $categories = Category::all();
+        $categories = DB::table('categories')->where('restaurant_id', $restaurant->id)->get();
         return view('category.index', compact('categories'), compact('restaurant'));
     }
 
@@ -34,11 +35,14 @@ class CategoryController extends Controller
             'description' => $request->get('description'),
             //'image' => $request->get('image') style="width: 250px; heigth: 190px",
             'image' => $imagePath,
-            'restaurant_id' => $restaurant
+            'restaurant_id' => $restaurant->id
         ]);
+        //dd($category);
+        //dd($restaurant);
         $category->save();
-        //$category->restaurant()->associate($restaurant);
-        return Response()->json($category);
+        $category->restaurant()->associate($restaurant);
+        //return Response()->json($category);
+        return back();
     }
 
     public function edit($id)
@@ -49,12 +53,11 @@ class CategoryController extends Controller
 
     public function destroy($id)
     {
+        DB::table('articles')->where('category_id', $id)->delete();
+
         $category = Category::find($id);
         $category->delete();
 
-        //return redirect('/admin/category');
-        return Response()->json([
-            'message' => "reussi"
-        ]);
+        return back();
     }
 }

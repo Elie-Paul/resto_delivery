@@ -40,7 +40,7 @@
                     <div class="page-title">
                         <ol class="breadcrumb text-right">
                             <li><a href="{{Route('admin')}}">Tableau de bord</a></li>
-                            <li class="active">Name restaurant</li>
+                            <li class="active">{{$restaurant->nom}}</li>
                         </ol>
                     </div>
                 </div>
@@ -57,7 +57,7 @@
                     <button class="btn btn-secondary" id="btnCat" data-toggle="modal" data-target="#scrollmodal">Ajouter une catégorie</button>
                     <button class="btn btn-primary" id="btnCat">Ajouter une extension</button>
                     <div class="float-right">
-                        <a class="btn btn-info float-right mr-2 mb-2" href="{{Route('resto.list')}}" id="finished" role="button"><b>Terminer</b> </a>
+                        <a class="btn btn-info float-right mr-2 mb-2" href="{{Route('resto.list', ['restaurant' => $restaurant->id])}}" id="finished" role="button"><b>Terminer</b> </a>
                     </div>
 
                 </div>
@@ -73,7 +73,7 @@
                 <div class="card-body">
                     <h5 class="card-title"><b>{{$category->nom}}</b></h5>
                     <p class="card-text">{{$category->description}}</p>
-                    <button class="btn btn-secondary" data-toggle="modal" data-target="#modalarticle">Ajouter un article</button>
+                    <button class="btn btn-secondary article" data-toggle="modal" id="{{ $category->id }}" data-target="#modalarticle">Ajouter un article</button>
                 </div>
                 <div class="card-footer">
                     <div class="rows">
@@ -124,7 +124,7 @@
                             <p>
                                 <div class="card">
                                     <div class="card-body card-block">
-                                        <form action="{{ Route('category.store') }}" id="form1" method="POST" enctype="multipart/form-data">
+                                        <form action="{{ Route('category.store', ['restaurant' => $restaurant->id] ) }}" id="form1" method="POST" enctype="multipart/form-data">
                                             @csrf
                                             <div class="input-group mb-3 mt-2">
                                                 <div class="input-group-prepend">
@@ -148,16 +148,12 @@
                                                 </div>
                                             </div>
                                             <button type="submit" class="btn btn-success" id="addCategory"><span class="fa fa-send"> Ajouter </span></button>
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuller</button>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
                                         </form>
                                     </div>
                                 </div>
                             </p>
                         </div>
-                        <!--div class="modal-footer">
-                            <button type="button" class="btn btn-success" id="addCategory"><span class="fa fa-send"> Ajouter </span></button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuller</button>
-                        </div-->
                     </div>
                 </div>
             </div>
@@ -165,7 +161,7 @@
     <!-- Fin du Modal add Categorie -->
 
     <!-- Modal add article -->
-<div class="animated">
+<!--div class="animated">
     <div class="modal fade" id="modalarticle" tabindex="-1" role="dialog" aria-labelledby="modalarticleLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -178,35 +174,36 @@
                         <p>
                             <div class="card">
                                 <div class="card-body card-block">
-                                    <form action="#" method="post" class="">
+                                    <form action=" {{ Route('article.store', ['category' => 1] ) }} " method="POST" class="" enctype="multipart/form-data">
+                                        @csrf
                                         <div class="collapse show" id="collapseOne">
                                             <div class="form-row">
                                                 <div class="form-group col-md-8">
-                                                    <input type="text" class="form-control" id="nomArt" placeholder="Nom de l'article">
+                                                    <input type="text" class="form-control" id="nomArt" name="nom" placeholder="Nom de l'article">
                                                 </div>
                                                 <div class="form-group col-md-4">
-                                                    <input type="number" class="form-control" id="descArt" placeholder="Prix">
+                                                    <input type="number" class="form-control" id="descArt" name="prix" placeholder="Prix">
                                                 </div>
                                                 <div class="form-group col">
-                                                    <input type="text" class="form-control" id="descArt" placeholder="Description de l'article">
+                                                    <input type="text" class="form-control" id="descArt" name="description" placeholder="Description de l'article">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="collapse" id="collapseTwo">
                                             <div class="form-row">
                                                 <div class="form-group col-md-12">
-                                                    <input type="text" class="form-control" id="nomArt" placeholder="Nom de l'article">
+                                                    <input type="text" class="form-control" id="nomArt" name="nom" placeholder="Nom de l'article">
                                                 </div>
                                                 <div class="form-group col-md-12">
-                                                    <input type="text" class="form-control" id="descArt" placeholder="Description de l'article">
+                                                    <input type="text" class="form-control" id="descArt" name="description" placeholder="Description de l'article">
                                                 </div>
                                                 <div class="collapse" id="grandeur1">
                                                     <div class="form-row">
                                                         <div class="form-group col-md-6">
-                                                            <input type="text" class="form-control" id="taille1" placeholder="Plus petite taille">
+                                                            <input type="text" class="form-control" id="taille1" name="taille_a" placeholder="Plus petite taille">
                                                         </div>
                                                         <div class="form-group col-md-3">
-                                                            <input type="number" class="form-control" id="prix1" placeholder="Prix">
+                                                            <input type="number" class="form-control" id="prix1" name="prix_a" placeholder="Prix">
                                                         </div>
                                                         <div class="col mt-1">
                                                             <button type="button" class="btn-supp btn-outline" id="del1"><i class="fa fa-trash-o"></i></button>
@@ -216,10 +213,10 @@
                                                 <div class="collapse" id="grandeur2">
                                                     <div class="form-row">
                                                         <div class="form-group col-md-6">
-                                                            <input type="text" class="form-control" id="taille2" placeholder="Plus petite taille">
+                                                            <input type="text" class="form-control" id="taille2" name="taille_b" placeholder="Plus petite taille">
                                                         </div>
                                                         <div class="form-group col-md-3">
-                                                            <input type="number" class="form-control" id="prix2" placeholder="Prix">
+                                                            <input type="number" class="form-control" id="prix2" name="prix_b" placeholder="Prix">
                                                         </div>
                                                         <div class="col mt-1">
                                                             <button type="button" class="btn-supp btn-outline" id="del2"><i class="fa fa-trash-o"></i></button>
@@ -229,10 +226,10 @@
                                                 <div class="collapse" id="grandeur3">
                                                     <div class="form-row">
                                                         <div class="form-group col-md-6">
-                                                            <input type="text" class="form-control" id="taille3" placeholder="Plus petite taille">
+                                                            <input type="text" class="form-control" id="taille3" name="taille_c" placeholder="Plus petite taille">
                                                         </div>
                                                         <div class="form-group col-md-3">
-                                                            <input type="number" class="form-control" id="prix3" placeholder="Prix">
+                                                            <input type="number" class="form-control" id="prix3" name="prix_c" placeholder="Prix">
                                                         </div>
                                                         <div class="col mt-1">
                                                             <button type="button" class="btn-supp btn-outline" id="del3"><i class="fa fa-trash-o"></i></button>
@@ -247,6 +244,8 @@
                                         <div class="form-group">
                                             <button type="button" class="btn btn-outline-secondary" id="grdMul">Grandeurs multiples</button>
                                         </div>
+                                        <button type="submit" class="btn btn-success"><span class="fa fa-send"> Ajouter </span></button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
                                     </form>
                                 </div>
                             </div>
@@ -259,7 +258,46 @@
                 </div>
             </div>
         </div>
+    </div-->
+<!-- Modal article -->
+<div class="animated">
+    <div class="modal fade" id="modalarticle" tabindex="-1" role="dialog" aria-labelledby="modalarticleLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modalarticleLabel">Ajouter un article</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            <div class="card">
+                                <div class="card-body card-block" id="art">
+                                    <form action=" {{ Route('article.store' ) }} " method="POST" class="formArt" enctype="multipart/form-data">
+                                        @csrf
+                                        <div class="form-row">
+                                            <div class="form-group col-md-8">
+                                                <input type="text" class="form-control" id="nomArt" name="nom" placeholder="Nom de l'article">
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <input type="number" class="form-control" id="prix" name="prix" placeholder="Prix">
+                                            </div>
+                                            <div class="form-group col" id="ad">
+                                                <input type="text" class="form-control" id="descArt" name="description" placeholder="Description de l'article">
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-success" id="addArt"><span class="fa fa-send"> Ajouter </span></button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
 
 
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
@@ -270,6 +308,13 @@
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
+        });
+
+        $(".article").click(function(){
+            var id = $(this).attr('id');
+            //alert(id);
+
+            $('#ad').append('<div class="form-group col">  <input type="hidden" name="category_id" value='+id+' /> </div>');
         });
 
      $( "#grdMul" ).click(function() {
@@ -316,30 +361,5 @@
         });
     });
 
-    // Ajouter une categorie
-    /*$("#addCategory").click(function(e){
-        e.preventDefault();
-
-        let nom = $("#nom").val();
-        let description = $("#descriptionCat").val();
-        let image = $("#inputGroupFile01").val();
-
-        //let formData = new FormData();
-        //formData.append('image',$('input[type=file]')[0].files[0]);
-
-        console.log(nom+'---'+description+'-----'+image);
-
-        $.ajax({
-            type: 'POST',
-            url: '{{ Route('category.store') }}',
-            data: {nom:nom, description:description, image:image},
-            //data: formData,
-            success: function(data){
-                alert("success");
-                window.location.reload() ;
-            }
-        });
-
-    });*/
 </script>
 @endsection
