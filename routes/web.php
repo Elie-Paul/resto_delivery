@@ -27,7 +27,7 @@ Route::post('/restaurants', 'RestaurantController@store')->name('resto.store');
 Route::get('/admin/resto/pop', 'RestaurantController@populaire')->name('resto.pop');
 
 Route::get('/admin/resto/{restaurant}/access', 'RestaurantController@access')->name('resto.access');
-Route::patch('/admin/{restaurant}', 'RestaurantController@update')->name('resto.update');
+Route::patch('/admin/{restaurant}/one', 'RestaurantController@update')->name('resto.update');
 Route::patch('/admin/{restaurant}', 'RestaurantController@update_bis')->name('resto.update_bis');
 
 Route::get('/admin/resto/{restaurant}/access/reservation', 'ReservationController@index')->name('resto.reserv');
@@ -54,4 +54,7 @@ Route::post('/cuisines/{restaurant}', 'CuisineController@store')->name('cuisine.
 
 Route::delete('/delete/{restaurant}/{cuisine}', 'CuisineController@delete')->name('cuisine.delete');
 Route::post('/cuisine/{restaurant}', 'CuisineController@ajouter')->name('cuisine.ajouter');
+
+// Heure d'ouverture
+Route::post('/business/hours/{restaurant}', 'BusinessHoursController@store')->name('business.store');
 

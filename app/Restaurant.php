@@ -13,6 +13,8 @@ class Restaurant extends Model
      */
     protected $fillable = [
         'nom',
+        'email',
+        'image',
         'tel1',
         'tel2',
         'ville',
@@ -33,5 +35,10 @@ class Restaurant extends Model
     public function categories()
     {
         return $this->hasMany(Category::class);
+    }
+
+    public function businesshours()
+    {
+        return $this->belongsToMany(BusinessHours::class);
     }
 }

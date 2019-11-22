@@ -18,7 +18,7 @@
                     <div class="page-title">
                         <ol class="breadcrumb text-right">
                             <li><a href="{{Route('admin')}}">Tableau de bord</a></li>
-                            <li class="active">Name restaurant</li>
+                            <li class="active">{{$restaurant->nom}}</li>
                         </ol>
                     </div>
                 </div>
@@ -35,26 +35,28 @@
             </div>
             <div class="card-body">
                 <div class="d-flex-align-items-center md-4 mb-2">
-                    Image du restaurant
+                    Heures d'ouverture :
                 </div>
-                <!--div class="border rounded bg-white mt-3">
+                <div class="border rounded bg-white mt-3">
                     <div class="d-flex mb-6" id="heure">
-                        <div class="font-weight-blod mt-3 ml-2"><span id="days">Lundi-Dimanche:</span></div>
-                        <div class="ml-auto mr-6 mt-3">11:00-23:00</div>
-                        <div class="mr-2 ml-2 mt-2 supprimer" style="display:none;">
-                            <button class="btn btn-outline-secondary supp" data-toggle="tooltip" data-placement="top" title="Supprimer">
-                                <i class="fa fa-times"></i>
-                            </button>
-                        </div>
-                        <div class="ml-2 mt-2">
-                            <button type="button" class="btn btn-outline-secondary mr-2" data-toggle="tooltip" data-placement="top" title="Modifier">
-                                <i class="fa fa-pencil"></i>
-                            </button>
-                        </div>
+                        @foreach ($restaurant->businesshours as $business)
+                            <div class="font-weight-blod mt-3 ml-2"><span id="days">{{$business->jours}}</span></div>
+                            <div class="ml-auto mr-6 mt-3">{{$business->open_time}} à {{$business->close_time}}</div>
+                            <div class="mr-2 ml-2 mt-2 supprimer" style="display:none;">
+                                <button class="btn btn-outline-secondary supp" data-toggle="tooltip" data-placement="top" title="Supprimer">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                            </div>
+                            <div class="ml-2 mt-2">
+                                <button type="button" class="btn btn-outline-secondary mr-2" data-toggle="tooltip" data-placement="top" title="Modifier">
+                                    <i class="fa fa-pencil"></i>
+                                </button>
+                            </div>
+                        @endforeach
                     </div>
 
                     <div class="collapse" id="collapse">
-                        <div class="d-flex mb-6 align-items-start">
+                        <!--div class="d-flex mb-6 align-items-start">
                                 <div class="row mb-0">
                                     <div class="day-of-week col-4 d-flex align-items-center cursor-hand">
                                         <label class="d-flex m-0 align-items-baseline py-2">
@@ -115,27 +117,61 @@
                                         <input placeholder="Selected time" value="now" type="time" id="time2" class="form-control">
                                     </div>
                                 </div>
-                            </div>
+                            </div-->
+                            <form method="POST" action="{{ Route('resto.update_bis', ['restaurant' => $restaurant->id]) }}" enctype="multipart/form-data">
+                                @method('PATCH')
+                                @csrf
+                                <div class="form-row">
+                                <div class="form-group col-md-3 mt-2">
+                                        <label> Du </label>
+                                    <select id="jours" class="form-control">
+                                        <option selected disabled>Jours</option>
+                                        <option value="1">Lundi</option>
+                                        <option value="2">Mardi</option>
+                                        <option value="3">Mercredi</option>
+                                        <option value="4">Jeudi</option>
+                                        <option value="5">Vendredi</option>
+                                        <option value="6">Samedi</option>
+                                        <option value="7">Dimanche</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-3 mt-2">
+                                        <label> AU </label>
+                                    <select id="inputState" class="form-control">
+                                    <option selected disabled>Jours</option>
+                                        <option value="1">Lundi</option>
+                                        <option value="2">Mardi</option>
+                                        <option value="3">Mercredi</option>
+                                        <option value="4">Jeudi</option>
+                                        <option value="5">Vendredi</option>
+                                        <option value="6">Samedi</option>
+                                        <option value="7">Dimanche</option>
+                                    </select>
+                                </div>
+                                <div class="form-group date col-md-3 mt-2" id='datetimepicker2'>
+                                        <label> A partir de  </label>
+                                    <input placeholder="Selected time" type="time" id="time1" name="open_time" class="form-control">
+                                </div>
+                                <div class="form-group date col-md-3 mt-2" id='datetimepicker2'>
+                                        <label> Jusqu'à  </label>
+                                    <input placeholder="Selected time" type="time" id="time2" name="close_time" class="form-control">
+                                </div>
+                                </div>
+                            </form>
                     </div>
 
                     <div class="d-flex align-items-center mt-5 mb-2 ml-2">
                         <button id="ajout" class="btn btn-secondary">Ajouter</button>
                         <button id="annul" onclick="save()" class="btn btn-danger ml-3" style="display:none;">Annuler</button>
                     </div>
-                </div-->
-                <form method="POST" action="#" enctype="multipart/form-data">
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" name="image" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" accept="image/jpeg, image/png">
-                        <label class="custom-file-label" for="inputGroupFile01">Choisir une image du restaurant</label>
-                    </div>
-                    <div class="d-flex-align-items-center md-4 mt-4">
-                        Heures d'ouverture :
-                    </div>
+                </div>
+                <!--form method="POST" action="{{ Route('resto.update_bis', ['restaurant' => $restaurant->id]) }}" enctype="multipart/form-data">
+                        @method('PATCH')
+                        @csrf
                     <div class="form-row">
                       <div class="form-group col-md-3 mt-2">
                             <label> Du </label>
                         <select id="inputState" class="form-control">
-                            <option selected>Choose...</option>
                             <option selected disabled>Jours</option>
                             <option value="1">Lundi</option>
                             <option value="2">Mardi</option>
@@ -149,7 +185,6 @@
                       <div class="form-group col-md-3 mt-2">
                             <label> AU </label>
                         <select id="inputState" class="form-control">
-                          <option selected>Choose...</option>
                           <option selected disabled>Jours</option>
                             <option value="1">Lundi</option>
                             <option value="2">Mardi</option>
@@ -162,7 +197,7 @@
                       </div>
                       <div class="form-group date col-md-3 mt-2" id='datetimepicker2'>
                             <label> A partir de  </label>
-                        <input placeholder="Selected time" type="time" id="time1" class="form-control">
+                        <input placeholder="Selected time" type="time" id="time" name="heure_ouverture" class="form-control">
                       </div>
                       <div class="form-group date col-md-3 mt-2" id='datetimepicker2'>
                             <label> Jusqu'à  </label>
@@ -170,7 +205,7 @@
                       </div>
                     </div>
                     <button type="submit" class="btn btn-primary">Ajouter</button>
-                  </form>
+                </form-->
             </div>
             <div class="rows">
                 <a class="btn btn-info float-right mr-4 mb-2" href="{{Route('category.index', ['restaurant' => $restaurant->id])}}" id="next" role="button"><b>Suivant</b>   <i class="fa fa-arrow-right"></i></a>
@@ -183,6 +218,12 @@
 
 <script>
     jQuery(document).ready(function($){
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
 
     $( "#ajout" ).click(function() {
             $("#collapse").show();
@@ -199,9 +240,28 @@
             //let mardi = $("#mardi").is(":checked"); // Recuperer un checkbox
             /***** traitement des heures *********/
 
-            let time1 = document.getElementById("time1").value;
-            let time2 = document.getElementById("time2").value;
-            console.log(time1);
+            let open_time = document.getElementById("time1").value;
+            let close_time = document.getElementById("time2").value;
+
+            let jours = $("#jours option:selected").text();
+            //let jours = $("#jours").val();
+
+            console.log(jours+'----'+open_time);
+
+            if (jours === null) {
+                alert("Vous devez selectionner un jour");
+            } else {
+                $.ajax({
+                    type: 'POST',
+                    url: '{{ Route('business.store', ['restaurant' => $restaurant->id]) }}',
+                    data: {jours:jours, open_time:open_time, close_time:close_time},
+                    success: function(data){
+                        //alert("success");
+                        window.location.reload() ;
+                    }
+                });
+            }
+
 
             if (lundi) {
                 //$("#heure").clone().appendTo("div.d-flex.mb-6.ml-2");
@@ -227,13 +287,6 @@
                 $( "#ajout" ).addClass("btn-secondary");
                 $("#lundi").prop("checked",false);
             }
-            /*if (lundi && mardi) {
-                alert("test");
-            }*/
-
-            /*$("#lundi").click(function(){
-                alert("test");
-            })*/
 
         });
 

@@ -81,7 +81,7 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title" id="scrollmodalLabel">Add a restaurant</h4>
+                        <h4 class="modal-title" id="scrollmodalLabel">Ajouter un restaurant</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -89,37 +89,35 @@
                         <p>
                             <div class="card">
                                 <div class="card-body card-block">
-                                    <form method="POST" action="{{ Route('resto.store') }}">
+                                    <form method="POST" action="{{ Route('resto.store') }}" enctype="multipart/form-data">
                                         @csrf
                                         <div class="input-group mb-3 mt-2">
                                             <div class="input-group-prepend">
                                                 <button class="btn btn-secondary" type="button"><i class="menu-icon fa fa-pie-chart"></i></button>
                                             </div>
-                                            <input type="text" class="form-control" id="nom" placeholder="Nom du restaurant *" aria-label="" aria-describedby="basic-addon1" required>
+                                            <input type="text" class="form-control" id="nom" name="nom" placeholder="Nom du restaurant *" aria-label="" aria-describedby="basic-addon1" required>
                                         </div>
                                         <div class="input-group mb-3 mt-2">
                                             <div class="input-group-prepend">
                                                 <button class="btn btn-secondary" type="button"><i class="menu-icon fa fa-envelope"></i></button>
                                             </div>
-                                            <input type="email" class="form-control" id="email" placeholder="Email *" aria-label="" aria-describedby="basic-addon1" required>
+                                            <input type="email" class="form-control" id="email" name="email" placeholder="Email *" aria-label="" aria-describedby="basic-addon1" required>
                                         </div>
-                                        <!--button type="submit" id="addRest" class="btn btn-success">Créer</button-->
-                                        <!--div class="form-group">
-                                            <div class="input-group">
-                                                <div class="input-group-addon"><i class="fa fa-asterisk"></i></div>
-                                                <input type="password" id="password" name="password" placeholder="Password" class="form-control">
-                                            </div>
-                                        </div-->
-                                        <!--div class="form-actions form-group"><button type="submit" class="btn btn-success btn-sm">Submit</button></div-->
+                                        <div class="custom-file mb-3">
+                                            <input type="file" class="custom-file-input" name="image" aria-describedby="inputGroupFileAddon01" accept="image/jpeg, image/png">
+                                            <label class="custom-file-label" for="inputGroupFile01">Choisir une image du restaurant</label>
+                                        </div>
+                                        <button type="submit" class="btn btn-success">Créer</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
                                     </form>
                                 </div>
                             </div>
                         </p>
                     </div>
-                    <div class="modal-footer">
+                    <!--div class="modal-footer">
                         <button type="button" id="addRest" class="btn btn-success">Créer</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                    </div>
+                    </div-->
                 </div>
             </div>
         </div>
