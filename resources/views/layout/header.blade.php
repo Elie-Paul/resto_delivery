@@ -3,9 +3,10 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<title>Aahar || Food Delivery Html5 Template</title>
+	<title>Gaaw Food || Food Delivery</title>
 	<meta name="description" content="">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 
 	<!-- Favicons -->
 	<link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}">

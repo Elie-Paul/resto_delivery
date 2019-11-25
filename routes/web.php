@@ -12,7 +12,9 @@
 */
 
 Route::get('/', function () {
-    return view('index');
+
+    $restaurants = \App\Restaurant::all();
+    return view('index',compact('restaurants'));
 });
 
 Auth::routes();
@@ -57,4 +59,12 @@ Route::post('/cuisine/{restaurant}', 'CuisineController@ajouter')->name('cuisine
 
 // Heure d'ouverture
 Route::post('/business/hours/{restaurant}', 'BusinessHoursController@store')->name('business.store');
+
+/**Les routes de la partie clientel */
+
+// route menu des categories
+Route::get('/restaurant/menu/{restaurant}', 'MenuController@menu')->name('restaurant.menu');
+
+// route menu article
+Route::get('/restaurant/menu/{category}/article','MenuController@menuArticle')->name('restaurant.article');
 

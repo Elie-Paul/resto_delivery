@@ -6,7 +6,7 @@
                     <!-- Start Single Footer -->
                     <div class="col-md-6 col-lg-3 col-sm-12">
                         <div class="footer">
-                            <h2 class="ftr__title">About Aahar</h2>
+                            <h2 class="ftr__title">A propos de Gaaw Food</h2>
                             <div class="footer__inner">
                                 <div class="ftr__details">
                                     <!--p>Lorem ipsum dolor sit amconsectetur adipisicing elit,</p-->
@@ -53,12 +53,12 @@
                             <h2 class="ftr__title">Notre galerie</h2>
                             <div class="footer__inner">
                                 <ul class="sm__gallery__list">
-                                    <li><a href="#"><img src="images/gallery/sm-img/1.jpg" alt="gallery images"></a></li>
-                                    <li><a href="#"><img src="images/gallery/sm-img/2.jpg" alt="gallery images"></a></li>
-                                    <li><a href="#"><img src="images/gallery/sm-img/3.jpg" alt="gallery images"></a></li>
-                                    <li><a href="#"><img src="images/gallery/sm-img/4.jpg" alt="gallery images"></a></li>
-                                    <li><a href="#"><img src="images/gallery/sm-img/5.jpg" alt="gallery images"></a></li>
-                                    <li><a href="#"><img src="images/gallery/sm-img/6.jpg" alt="gallery images"></a></li>
+                                    <li><a href="#"><img src="{{asset('images/gallery/sm-img/1.jpg')}}" alt="gallery images"></a></li>
+                                    <li><a href="#"><img src="{{asset('images/gallery/sm-img/2.jpg')}}" alt="gallery images"></a></li>
+                                    <li><a href="#"><img src="{{asset('images/gallery/sm-img/3.jpg')}}" alt="gallery images"></a></li>
+                                    <li><a href="#"><img src="{{asset('images/gallery/sm-img/4.jpg')}}" alt="gallery images"></a></li>
+                                    <li><a href="#"><img src="{{asset('images/gallery/sm-img/5.jpg')}}" alt="gallery images"></a></li>
+                                    <li><a href="#"><img src="{{asset('images/gallery/sm-img/6.jpg')}}" alt="gallery images"></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -95,7 +95,7 @@
                             </div>
                             <div class="cpy__right--right">
                                 <a href="#">
-                                    <img src="images/icon/shape/2.png" alt="payment images">
+                                    <img src="{{asset('images/icon/shape/2.png')}}" alt="payment images">
                                 </a>
                             </div>
                         </div>
@@ -197,7 +197,7 @@
                     <div class="cartbox__item">
                         <div class="cartbox__item__thumb">
                             <a href="product-details.html">
-                                <img src="images/blog/sm-img/1.jpg" alt="small thumbnail">
+                                <img src="{{asset('images/blog/sm-img/1.jpg')}}" alt="small thumbnail">
                             </a>
                         </div>
                         <div class="cartbox__item__content">
@@ -213,7 +213,7 @@
                     <div class="cartbox__item">
                         <div class="cartbox__item__thumb">
                             <a href="product-details.html">
-                                <img src="images/blog/sm-img/2.jpg" alt="small thumbnail">
+                                <img src="{{asset('images/blog/sm-img/2.jpg')}}" alt="small thumbnail">
                             </a>
                         </div>
                         <div class="cartbox__item__content">
@@ -229,7 +229,7 @@
                     <div class="cartbox__item">
                         <div class="cartbox__item__thumb">
                             <a href="product-details.html">
-                                <img src="images/blog/sm-img/3.jpg" alt="small thumbnail">
+                                <img src="{{asset('images/blog/sm-img/3.jpg')}}" alt="small thumbnail">
                             </a>
                         </div>
                         <div class="cartbox__item__content">

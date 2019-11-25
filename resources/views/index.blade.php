@@ -108,37 +108,51 @@
                 </div>
             </div>
             <div class="row mt--30">
-                <!-- Start Single Menu Item -->
+                @foreach ($restaurants as $restaurant)
+                    <!-- Start Single Menu Item -->
                 <div class="col-lg-4 col-sm-12 col-md-6">
-                    <div class="menu__grid__item wow fadeInUp">
-                        <div class="menu__grid__thumb">
-                            <a href="menu-details.html">
-                                <img src="images/menu-grid/2.jpg" alt="grid item images">
-                            </a>
-                        </div>
-                        <div class="menu__grid__inner">
-                            <div class="menu__grid__details">
-                                <h2><a href="menu-details.html">Salman With Tomato</a></h2>
-                                <ul class="grid__prize__list">
-                                    <li class="old__prize">$50</li>
-                                    <li>$50</li>
-                                </ul>
-                                <p>erve armesan may be added to the top of apLem ip, consectetur adipisicing elLorem ipsum adipisicing elit, sed do</p>
+                        <div class="menu__grid__item wow fadeInUp">
+                            <div class="menu__grid__thumb">
+                                <a href="menu-details.html">
+                                    <img src="{{ asset('storage') . '/' . $restaurant->image }}" alt="grid item images">
+                                </a>
                             </div>
-                            <div class="grid__addto__cart__btn">
-                                <div class="row">
-                                    <div class="col-md-6 mt-2">
-                                        <button class="btn btn-success">Voir le menu</button>
-                                    </div>
-                                    <div class="col-md-6 mt-2">
-                                        <button class="btn btn-success">Voir le menu</button>
+                            <div class="menu__grid__inner">
+                                <div class="menu__grid__details">
+                                    <h2><a href="menu-details.html">{{$restaurant->nom}}</a></h2>
+                                    <ul class="grid__prize__list">
+                                        @foreach ($restaurant->cuisines as $cuisine)
+                                            <!--li class="old__prize">{{$cuisine->libelle}}</li-->
+                                            <li><!--i class="menu-icon fa fa-cutlery"></i-->{{$cuisine->libelle}}</li>
+                                        @endforeach
+                                        <!--li>$50</li-->
+                                    </ul>
+                                    <p>{{$restaurant->num_rue}}, {{$restaurant->ville}}</p>
+                                    <ul class="rating">
+                                        <li><i class="zmdi zmdi-star"></i></li>
+                                        <li><i class="zmdi zmdi-star"></i></li>
+                                        <li><i class="zmdi zmdi-star"></i></li>
+                                        <li><i class="zmdi zmdi-star"></i></li>
+                                        <li class="rating__opasity"><i class="zmdi zmdi-star"></i></li>
+                                    </ul>
+                                </div>
+                                <div class="grid__addto__cart__btn">
+                                    <div class="row">
+                                        <div class="col-md-6 mt-2">
+                                            <!--button class="btn btn-danger">Voir le menu</button-->
+                                            <a href="{{route('restaurant.menu',['restaurant' => $restaurant])}}">Voir le menu</a>
+                                        </div>
+                                        <div class="col-md-6 mt-2">
+                                            <!--button class="btn btn-info">Réserver une table</button-->
+                                            <a href="">Réserver </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- End Single Menu Item -->
+                    <!-- End Single Menu Item -->
+                @endforeach
             </div>
         </div>
     </section>
