@@ -31,7 +31,8 @@
                                     <span>{{$article->prix}} Frcfa</span>
                                 </div>
                                 <div class="col">
-                                    <button class="btn btn-danger" id="tett"><i class="fa fa-plus"></i></button>
+                                    <!--button class="btn btn-danger" id="tett"><i class="fa fa-plus"></i></button-->
+                                    <a href="{{route('cart.add',['article' => $article->id])}}"><i class="fa fa-plus"></i></a>
                                 </div>
                             </div>
                         </td>

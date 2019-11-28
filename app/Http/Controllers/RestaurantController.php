@@ -14,7 +14,8 @@ class RestaurantController extends Controller
     public function index()
     {
         $restaurants = Restaurant::all();
-        return view('resto.list', compact('restaurants'));
+        //return view('resto.list', compact('restaurants'));
+        return Response()->json($restaurants);
     }
 
     public function store(Request $request)

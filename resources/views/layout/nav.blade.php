@@ -8,7 +8,7 @@
                 <div class="row">
                     <div class="col-lg-2 col-sm-4 col-md-6 order-1 order-lg-1">
                         <div class="logo">
-                            <a href="index.html">
+                            <a href="/  ">
                                 <img src="{{asset('images/logo/foody.png')}}" alt="logo images">
                             </a>
                         </div>
@@ -17,7 +17,7 @@
                         <div class="main__menu__wrap">
                             <nav class="main__menu__nav d-none d-lg-block">
                                 <ul class="mainmenu">
-                                    <li class="drop"><a href="index.html">Acceuil</a></li>
+                                    <li class="drop"><a href="/ ">Acceuil</a></li>
                                     <li><a href="#">Menu</a></li>
                                     <li><a href="#">A propos</a></li>
                                     <li><a href="#">Contact</a></li>
@@ -34,7 +34,7 @@
                             <div class="shopping__cart">
                                 <a class="minicart-trigger" href="#"><i class="zmdi zmdi-shopping-basket"></i></a>
                                 <div class="shop__qun">
-                                    <span>03</span>
+                                    <span>3</span>
                                 </div>
                             </div>
                         </div>

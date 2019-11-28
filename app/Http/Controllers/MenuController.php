@@ -12,7 +12,8 @@ class MenuController extends Controller
     public function menu(Restaurant $restaurant)
     {
         $categories = DB::table('categories')->where('restaurant_id', $restaurant->id)->get();
-        return view('restaurant.menu', compact('restaurant'),compact('categories'));
+        $cart = \Cart::getContent();
+        return view('restaurant.menu', compact('restaurant'),compact('categories'), ['data'=>$cart]);
     }
 
     public function menuArticle(Category $category)

@@ -14,8 +14,20 @@
 Route::get('/', function () {
 
     $restaurants = \App\Restaurant::all();
-    return view('index',compact('restaurants'));
+    $cart = \Cart::getContent();
+    return view('index',compact('restaurants'),[
+        'data' => $cart
+    ]);
 });
+
+//Cart function
+Route::get('/cart','CartController@index')->name('cart.index');
+Route::get('/cart/add/{article}','CartController@addItem')->name('cart.add');
+//Cart end
+
+// Checkout
+Route::get('/checkout','OrderController@index')->name('order.index');
+
 
 Auth::routes();
 
