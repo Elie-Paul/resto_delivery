@@ -20,13 +20,22 @@ Route::get('/', function () {
     ]);
 });
 
+//// ROUTE JSON AJAX ///////////
+
+Route::post('/json/categorie/article', 'MenuController@jsonCat')->name('cat.article');
+
+
+
 //Cart function
 Route::get('/cart','CartController@index')->name('cart.index');
-Route::get('/cart/add/{article}','CartController@addItem')->name('cart.add');
+Route::post('/cart/add/{restaurant}','CartController@addItem')->name('cart.add');
+Route::get('/cart/add/{article}','CartController@removeItem')->name('cart.remove');
 //Cart end
 
 // Checkout
 Route::get('/checkout','OrderController@index')->name('order.index');
+
+Route::post('/checkout/add','OrderController@add')->name('order.add');
 
 
 Auth::routes();
@@ -72,11 +81,24 @@ Route::post('/cuisine/{restaurant}', 'CuisineController@ajouter')->name('cuisine
 // Heure d'ouverture
 Route::post('/business/hours/{restaurant}', 'BusinessHoursController@store')->name('business.store');
 
-/**Les routes de la partie clientel */
+/**Les routes de la partie client */
 
 // route menu des categories
 Route::get('/restaurant/menu/{restaurant}', 'MenuController@menu')->name('restaurant.menu');
 
 // route menu article
-Route::get('/restaurant/menu/{category}/article','MenuController@menuArticle')->name('restaurant.article');
+Route::get('/restaurant/menu/{category}/{restaurant}/article','MenuController@menuArticle')->name('restaurant.article');
+
+
+
+/**    ROUTE POUR LES RESTAURATEURS    */
+Route::get('/restaurant/connexion', 'RestaurateurController@login')->name('restaurateur.login');
+Route::post('/restaurant/connexion/login', 'RestaurateurController@connexion')->name('restaurateur.connexion');
+Route::get('/restaurant/acceuil', 'RestaurateurController@acceuil')->name('restaurateur.acceuil');
+
+Route::get('/restaurant/send/mail/{client}', 'RestaurateurController@sendMail')->name('restaurateur.sendMail');
+
+
+Route::post('/add/client', 'RestaurateurController@addClient')->name('restaurateur.addClient');
+
 

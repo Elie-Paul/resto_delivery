@@ -25,4 +25,9 @@ class Article extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function commandes()
+    {
+        return $this->belongsToMany(Commande::class);
+    }
 }

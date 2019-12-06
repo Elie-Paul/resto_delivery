@@ -141,6 +141,9 @@
                                         <div class="col-md-6 mt-2">
                                             <!--button class="btn btn-danger">Voir le menu</button-->
                                             <a href="{{route('restaurant.menu',['restaurant' => $restaurant])}}">Voir le menu</a>
+                                            <!--span class="glf-button" data-glf-cuid="9e78b3e2-d7f5-4f84-838f-c5decd2f9caa" data-glf-ruid="026b18ca-746e-4aec-9a05-2fed59ae3f49" > Commandez maintenant</span>
+<span class="glf-button reservation" data-glf-cuid="9e78b3e2-d7f5-4f84-838f-c5decd2f9caa" data-glf-ruid="026b18ca-746e-4aec-9a05-2fed59ae3f49" data-glf-reservation="true" > Réservation de table </span>
+<script src="https://www.fbgcdn.com/embedder/js/ewm2.js" defer async ></script-->
                                         </div>
                                         <div class="col-md-6 mt-2">
                                             <!--button class="btn btn-info">Réserver une table</button-->

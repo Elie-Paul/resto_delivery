@@ -27,11 +27,11 @@
                         <table>
                             <thead>
                                 <tr class="title-top">
-                                    <th class="product-name">Product</th>
-                                    <th class="product-price">Price</th>
-                                    <th class="product-quantity">Quantity</th>
+                                    <th class="product-name">Produit</th>
+                                    <th class="product-price">Prix</th>
+                                    <th class="product-quantity">Quantité</th>
                                     <th class="product-subtotal">Total</th>
-                                    <th class="product-remove">Remove</th>
+                                    <th class="product-remove">Supprimer</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -41,7 +41,7 @@
                                         <td class="product-price"><span class="amount">{{$item->price}}</span></td>
                                         <td class="product-quantity"><input type="number" value="{{$item->quantity}}" /></td>
                                         <td class="product-subtotal">{{$item->price * $item->quantity}}</td>
-                                        <td class="product-remove"><a href="#">X</a></td>
+                                        <td class="product-remove"><a href="{{route('cart.remove', ['article' => $item->id])}}">X</a></td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -81,4 +81,31 @@
     </div>
 </div>
 <!-- cart-main-area end -->
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $("#next").click(function(e){
+                e.preventDefault();
+
+
+                /*$.ajax({
+                    type: 'PATCH',
+                    url: '{{ Route('resto.update', ['restaurant' => $restaurant->id]) }}',
+                    data: {nom:nom, tel1:tel1, ville:ville, code_postal:code_postal, num_rue:num_rue, _token:  "{{ csrf_token() }}"},
+                    success: function(data){
+                        alert("success");
+                        window.location.href = '{{Route('resto.cuisine', ['restaurant' => $restaurant->id])}}' ;
+                        //window.location.reload();
+                    }
+                });*/
+
+            });
+      } );
+  </script>
 @endsection

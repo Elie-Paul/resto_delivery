@@ -29,10 +29,11 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <span>{{$article->prix}} Frcfa</span>
+                                    <input type="hidden" name="article" id="article_id"  value="{{$article->id}}">
                                 </div>
                                 <div class="col">
-                                    <!--button class="btn btn-danger" id="tett"><i class="fa fa-plus"></i></button-->
-                                    <a href="{{route('cart.add',['article' => $article->id])}}"><i class="fa fa-plus"></i></a>
+                                    <button class="btn btn-danger addCart" ><i class="fa fa-plus"></i></button>
+                                    <!--a href="{{route('cart.add',['restaurant' => $restaurant->id])}}"><i class="fa fa-plus"></i></a-->
                                 </div>
                             </div>
                         </td>
@@ -42,6 +43,7 @@
         </table>
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script>
     jQuery(document).ready(function($){
@@ -51,8 +53,25 @@
             }
         });
 
-        $("#tett").click(function(){
-            alert('test');
+        $(".addCart").click(function(){
+            let article_id = $('#article_id').val()
+            $.ajax({
+                type: 'POST',
+                url: '{{route('cart.add',['restaurant' => $restaurant->id])}}',
+                data: {id: article_id},
+                success: function(data){
+                    console.log(data);
+
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Article ajouté au panier',
+                        showConfirmButton: false,
+                        timer: 2000
+                        })
+                    //window.location.reload();
+                }
+            });
         });
     });
 </script>

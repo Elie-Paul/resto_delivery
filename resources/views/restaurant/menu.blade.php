@@ -11,7 +11,7 @@
                         <nav class="bradcaump-inner">
                             <a class="breadcrumb-item" href="/">Acceuil</a>
                             <span class="brd-separetor"><i class="zmdi zmdi-long-arrow-right"></i></span>
-                            <span class="breadcrumb-item active">menu List view</span>
+                            <span class="breadcrumb-item active">Liste du menu</span>
                         </nav>
                     </div>
                 </div>
@@ -22,7 +22,7 @@
 
 <section class="food__menu__grid__area section-padding--lg">
     <div class="container">
-        <div class="row">
+        <!--div class="row">
             <div class="col-lg-12">
                 <div class="food__nav nav nav-tabs" role="tablist">
                     <a class="active" id="nav-all-tab" data-toggle="tab" href="#nav-all" role="tab">All</a>
@@ -33,7 +33,7 @@
                     <a id="nav-snacks-tab" data-toggle="tab" href="#nav-snacks" role="tab">Snacks</a>
                 </div>
             </div>
-        </div>
+        </div-->
         <div class="row mt--30">
             <div class="col-lg-12">
                 <div class="fd__tab__content tab-content" id="nav-tabContent">
@@ -52,7 +52,8 @@
                                         <h2><a href="menu-details.html">{{$category->nom}}</a></h2>
                                         <p>Lorem ipsum dolor sit aLorem ipsum dolor sit amet, consectetu adipis cing elit, sed do eiusmod tempor incididunt ut labore et dolmagna aliqua. enim ad minim veniam, quis nomagni dolores eos qnumquam.</p>
                                         <div class="list__btn">
-                                            <a class="food__btn grey--btn theme--hover" href="{{route('restaurant.article',['category' => $category->id])}}">Voir les plats</a>
+                                            <!--a class="food__btn grey--btn theme--hover" href="{{route('restaurant.article',['category' => $category->id, 'restaurant' => $restaurant->id])}}">Voir les plats</a-->
+                                            <button class="btn btn-info" id="{{$category->id}}">Voir</button>
                                         </div>
                                     </div>
                                 </div>
@@ -66,7 +67,7 @@
 </section>
 
 <div class="animated">
-    <div class="modal fade" id="modalarticle" tabindex="-1" role="dialog" aria-labelledby="modalarticleLabel" aria-hidden="true">
+    <div class="modal fade" id="modalarticle" role="dialog">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -78,24 +79,13 @@
                     <p>
                         <div class="card">
                             <div class="card-body card-block" id="art">
-                                    <table class="table table-hover">
+                                    <table class="table table-hover" id="tableArticle">
                                         <tbody>
                                             <tr>
-                                            <th scope="row">1</th>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                            </tr>
-                                            <tr>
-                                            <th scope="row">2</th>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>@fat</td>
-                                            </tr>
-                                            <tr>
-                                            <th scope="row">3</th>
-                                            <td colspan="2">Larry the Bird</td>
-                                            <td>@twitter</td>
+                                                <th scope="row">1</th>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -107,6 +97,7 @@
         </div>
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script>
     jQuery(document).ready(function($){
@@ -116,10 +107,57 @@
             }
         });
 
-        $(".food__btn").click(function(){
+        $(".btn-info").click(function(){
             var id = $(this).attr('id');
 
-            $('#ad').append('<div class="form-group col">  <input type="hidden" name="category_id" value='+id+' /> </div>');
+            $.ajax({
+                type: 'POST',
+                url: '{{route('cat.article')}}',
+                data: {id: id},
+                success: function(data){
+                    console.log(data);
+                    $('#tableArticle tr').remove();  // vider le table avant
+                    var tabHtml = "";
+                    //var btnadd = '<button class="btn btn-danger addCart" id="ad" ><i class="fa fa-plus"></i></button>';
+
+                    data.forEach(item => {
+                        console.log(item.nom);
+                        //const articles = document.getElementById('tableArticle');
+                        var btnadd = '<button class="btn btn-danger addCart" id='+item.id+' ><i class="fa fa-plus"></i></button>';
+
+                        // Remplir le tableau
+                        $('#tableArticle').append("<tr><td class='' id='article_id'>"+item.id+"</td><td>"+item.nom+"</td><td>"+item.prix+"</td><td>"+btnadd+"</td></tr>");
+                        jQuery('#modalarticle').modal('show');
+
+                        // traitement du modal
+                        $(".addCart").click(function(){
+                            //alert("test");
+                            //let article_id = $('#article_id').val()
+                            var article_id = $(this).attr('id');
+                            alert(article_id);
+                            $.ajax({
+                                type: 'POST',
+                                url: '{{route('cart.add',['restaurant' => $restaurant->id])}}',
+                                data: {id: article_id},
+                                success: function(data){
+                                    console.log(data);
+
+                                    Swal.fire({
+                                        position: 'top-end',
+                                        icon: 'success',
+                                        title: 'Article ajouté au panier',
+                                        showConfirmButton: false,
+                                        timer: 2000
+                                    });
+                                }
+                            });
+                        });
+                    });
+                }
+            });
+
+
+            //$('#ad').append('<div class="form-group col">  <input type="text" name="category_id" value='+id+' /> </div>');
         });
     });
 </script>

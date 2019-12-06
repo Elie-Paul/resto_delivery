@@ -218,8 +218,8 @@
                     </ul>
                 </div>
                 <div class="cartbox__buttons">
-                    <a class="food__btn" href="{{route('cart.index')}}"><span>View cart</span></a>
-                    <a class="food__btn" href="{{route('order.index')}}"><span>Checkout</span></a>
+                    <a class="food__btn" href="{{route('cart.index')}}"><span>Voir le panier</span></a>
+                    <a class="food__btn" href="{{route('order.index',['restaurant' => $restaurant->id])}}"><span>Checkout</span></a>
                 </div>
             </div>
         </div>
