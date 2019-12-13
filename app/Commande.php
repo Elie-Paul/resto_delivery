@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Commande extends Model
 {
@@ -56,6 +57,9 @@ class Commande extends Model
 
       \Cart::clear(); // make cart empty
 
-      return $cmd;
+      //$cmd1 = DB::table("commandes")->where('')
+      $cmd1 = Commande::find($cmd->id);
+
+      return $cmd1;
     }
 }

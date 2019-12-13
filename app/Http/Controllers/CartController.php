@@ -16,6 +16,13 @@ class CartController extends Controller
             'restaurant' => $restaurant
         ]);
     }
+
+    public function jsonCart()
+    {
+        $cart = \Cart::getContent();
+        return Response()->json($cart);
+    }
+
     public function addItem(Request $request, Restaurant $restaurant)
     {
         $article = Article::find($request->get('id'));

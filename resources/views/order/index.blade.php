@@ -29,7 +29,7 @@
 
                 <div class="card-deck">
                     <div class="card w-75">
-                        <div class="card-header">Informations du client</div>
+                        <div class="card-header"><h3 style="color: red">Informations du client</h3></div>
                         <div class="card-body">
                         <form action="{{route('restaurateur.addClient')}}" method="POST" class="billing-form checkout-form">
                             @csrf
@@ -50,19 +50,19 @@
                                     <input placeholder="Numero de telephone" type="text" id="telephone">
                                 </div>
                                 <div class="col-12 mb--20 mt-4">
-                                    <button class="food__btn">
+                                    <!--button class="food__btn">
                                         Enregistrer
                                     </button>
                                     <button class="food__btn" id="test">
                                         client existant
-                                    </button>
+                                    </button-->
                                 </div>
                             </div>
                         </form>
                         </div>
                     </div>
                     <div class="card">
-                        <div class="card-header">Votre commande</div>
+                        <div class="card-header"><h3 style="color: red">Votre commande</h3></div>
                         <div class="card-body">
                         <div class="order-details">
                             <form action="#" method="POST">
@@ -142,15 +142,31 @@
 
             //alert("dddd"+nom);
 
-            if (nom === "" || telephone === "") {
-                alert('Ajoutez au moins votre nom et votre numéro de telephone' );
+            if (nom === "" || telephone === "" || adresse === "") {
+                //alert('Ajoutez au moins votre nom et votre numéro de telephone' );
+                Swal.fire('Renseignez votre nom, votre numéro de telephone et votre adresse');
             }else{
                     $.ajax({
                     type: 'POST',
                     url: '{{ route('order.add') }}',
-                    //data: {nom: nom,prenom: prenom,adresse: adresse,email: email, _token:  "{{ csrf_token() }}"},
-                    success: function(data){
-                        alert(data);
+                    data: {nom: nom,prenom: prenom,adresse: adresse,email: email, _token:  "{{ csrf_token() }}"},
+                    success: function(cmd){
+                        if (cmd === "error") {
+                            Swal.fire('Votre panier est vide !!!!');
+                        } else {
+                            Swal.fire('Votre commande à été envoyé avec succès !!!');
+                            console.log(cmd);
+                            $.ajax({
+                                type: 'GET',
+                                url: '{{ route('cmd.article') }}',
+                                data: {id: cmd.id,client_id: cmd.client_id,nbr_art: cmd.nombre_article,prix_total: cmd.prix_total,resto_id: cmd.restaurant_id,dateC: cmd.created_at},
+                                success: function(cmdSend){
+                                    alert(cmdSend);
+                                    console.log(cmdSend);
+
+                                }
+                            });
+                        }
                         /*Swal.fire({
                             position: 'top-end',
                             icon: 'success',

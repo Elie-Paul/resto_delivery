@@ -48,7 +48,7 @@
                                     </a>
                                 </div>
                                 <div class="food__list__inner d-flex align-items-center justify-content-between">
-                                    <div class="food__list__details">
+                                    <div class="food__list__details" style="height: ">
                                         <h2><a href="menu-details.html">{{$category->nom}}</a></h2>
                                         <p>Lorem ipsum dolor sit aLorem ipsum dolor sit amet, consectetu adipis cing elit, sed do eiusmod tempor incididunt ut labore et dolmagna aliqua. enim ad minim veniam, quis nomagni dolores eos qnumquam.</p>
                                         <div class="list__btn">
@@ -129,12 +129,10 @@
                         $('#tableArticle').append("<tr><td class='' id='article_id'>"+item.id+"</td><td>"+item.nom+"</td><td>"+item.prix+"</td><td>"+btnadd+"</td></tr>");
                         jQuery('#modalarticle').modal('show');
 
-                        // traitement du modal
+                        // traitement du modal article
                         $(".addCart").click(function(){
-                            //alert("test");
-                            //let article_id = $('#article_id').val()
                             var article_id = $(this).attr('id');
-                            alert(article_id);
+                            //alert(article_id);
                             $.ajax({
                                 type: 'POST',
                                 url: '{{route('cart.add',['restaurant' => $restaurant->id])}}',
@@ -149,6 +147,7 @@
                                         showConfirmButton: false,
                                         timer: 2000
                                     });
+                                    window.location.reload();
                                 }
                             });
                         });

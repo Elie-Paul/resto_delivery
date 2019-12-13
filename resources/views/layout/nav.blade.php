@@ -34,7 +34,7 @@
                             <div class="shopping__cart">
                                 <a class="minicart-trigger" href="#"><i class="zmdi zmdi-shopping-basket"></i></a>
                                 <div class="shop__qun">
-                                    <span>3</span>
+                                    <span>{{\Cart::getContent()->count()}}</span>
                                 </div>
                             </div>
                         </div>

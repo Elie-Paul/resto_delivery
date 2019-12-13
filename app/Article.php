@@ -28,6 +28,10 @@ class Article extends Model
 
     public function commandes()
     {
-        return $this->belongsToMany(Commande::class);
+        return $this->belongsToMany(Commande::class)->using('App\Article_Commande')
+                                                    ->withPivot([
+                                                        'article_id',
+                                                        'commande_id'
+                                                    ]);
     }
 }

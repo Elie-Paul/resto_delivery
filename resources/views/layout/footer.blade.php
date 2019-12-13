@@ -195,11 +195,11 @@
                 <div class="cartbox__items">
                     <!-- Cartbox Single Item -->
                     <div class="cartbox__item">
-                        <div class="cartbox__item__thumb">
+                        <!--div class="cartbox__item__thumb">
                             <a href="product-details.html">
                                 <img src="{{asset('images/blog/sm-img/1.jpg')}}" alt="small thumbnail">
                             </a>
-                        </div>
+                        </div-->
                         <div class="cartbox__item__content">
                             <h5><a href="product-details.html" class="product-name">Vanila Muffin</a></h5>
                             <p>Qty: <span>01</span></p>
@@ -212,9 +212,9 @@
                 </div>
                 <div class="cartbox__total">
                     <ul>
-                        <li><span class="cartbox__total__title">Subtotal</span><span class="price">$70</span></li>
-                        <li class="shipping-charge"><span class="cartbox__total__title">Shipping Charge</span><span class="price">$05</span></li>
-                        <li class="grandtotal">Total<span class="price">$75</span></li>
+                        <!--li><span class="cartbox__total__title">Subtotal</span><span class="price">$70</span></li>
+                        <li class="shipping-charge"><span class="cartbox__total__title">Shipping Charge</span><span class="price">$05</span></li-->
+                        <li class="grandtotal">Total<span class="price">{{\Cart::getTotal()}}</span></li>
                     </ul>
                 </div>
                 <div class="cartbox__buttons">
@@ -232,5 +232,44 @@
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('js/plugins.js') }}"></script>
 <script src="{{ asset('js/active.js') }}"></script>
+<script>
+    jQuery(document).ready(function($){
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $.ajax({
+            type: 'POST',
+            url: '{{route('cart.article')}}',
+            //data: {id: article_id},
+            success: function(data){
+                //var data = JSON.parse(data);
+                console.log(data);
+                let btn = "<button class='cartbox__item__remove'><i class='fa fa-trash'></i></button>" ;
+
+                Object.keys(data).forEach(item => {
+                    console.log(data[item].name);
+                    let articles = "<h5><a class='product-name'>"+data[item].name+"</a></h5>";
+                    let quantity = "<p>Quantité: <span>"+data[item].quantity+"</span></p>";
+                    let prix = "<span class='price'>"+data[item].price+"</span>"
+                    $(".cartbox__items").append("<div class='cartbox__item'><div class='cartbox__item__content'>"+articles+quantity+prix+"</div>"+btn+"</div>");
+                });
+
+
+
+                /*Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Article ajouté au panier',
+                    showConfirmButton: false,
+                    timer: 2000
+                })*/
+            }
+        });
+
+    });
+</script>
 </body>
 </html>

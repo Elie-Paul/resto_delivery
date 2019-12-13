@@ -23,6 +23,8 @@ Route::get('/', function () {
 //// ROUTE JSON AJAX ///////////
 
 Route::post('/json/categorie/article', 'MenuController@jsonCat')->name('cat.article');
+Route::post('/json/cart', 'CartController@jsonCart')->name('cart.article');
+Route::get('/json/commande/last', 'OrderController@jsonCmd')->name('cmd.article');
 
 
 
