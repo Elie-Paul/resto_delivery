@@ -14,10 +14,8 @@
 Route::get('/', function () {
 
     $restaurants = \App\Restaurant::all();
-    $cart = \Cart::getContent();
-    return view('index',compact('restaurants'),[
-        'data' => $cart
-    ]);
+    //$cart = \Cart::getContent();
+    return view('index',compact('restaurants'));
 });
 
 //// ROUTE JSON AJAX ///////////
@@ -29,13 +27,13 @@ Route::get('/json/commande/last', 'OrderController@jsonCmd')->name('cmd.article'
 
 
 //Cart function
-Route::get('/cart','CartController@index')->name('cart.index');
+Route::get('/cart/{restaurant}','CartController@index')->name('cart.index');
 Route::post('/cart/add/{restaurant}','CartController@addItem')->name('cart.add');
 Route::get('/cart/add/{article}','CartController@removeItem')->name('cart.remove');
 //Cart end
 
 // Checkout
-Route::get('/checkout','OrderController@index')->name('order.index');
+Route::get('/checkout/{restaurant}','OrderController@index')->name('order.index');
 
 Route::post('/checkout/add','OrderController@add')->name('order.add');
 
@@ -97,7 +95,6 @@ Route::get('/restaurant/menu/{category}/{restaurant}/article','MenuController@me
 Route::get('/restaurant/connexion', 'RestaurateurController@login')->name('restaurateur.login');
 Route::post('/restaurant/connexion/login', 'RestaurateurController@connexion')->name('restaurateur.connexion');
 Route::get('/restaurant/acceuil', 'RestaurateurController@acceuil')->name('restaurateur.acceuil');
-
 Route::get('/restaurant/send/mail/{client}', 'RestaurateurController@sendMail')->name('restaurateur.sendMail');
 
 

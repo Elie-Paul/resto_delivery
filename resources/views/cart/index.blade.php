@@ -53,7 +53,7 @@
                         <li><a href="#">Coupon Code</a></li>
                         <li><a href="#">Apply Code</a></li>
                         <li><a href="#">Update Cart</a></li>
-                        <li><a href="{{route('order.index')}}">Checkout</a></li>
+                        <li><a href="{{route('order.index',['restaurant' => $restaurant->id])}}">Checkout</a></li>
                     </ul>
                 </div>
             </div>

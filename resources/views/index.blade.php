@@ -99,7 +99,7 @@
                 <div class="col-lg-12">
                     <div class="grid__show d-flex justify-content-between align-items-center">
                         <div class="grid__show__item">
-                            <p>Showing 1-9 of 18 Result </p>
+                            <p> </p>
                         </div>
                         <!--div class="grid__show__btn">
                             <a class="food__btn" href="#">Default Sorting</a>

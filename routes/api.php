@@ -24,4 +24,5 @@ Route::get('restaurant', 'ApiController@index');
 Route::get('/admin/resto/list', 'RestaurantController@index')->name('resto.list');
 
 Route::get('/json/commande', 'OrderController@jsonCmd')->name('cmd.article');
+Route::post('/json/commande/confirmation', 'OrderController@cmdConfirm');
 Route::post('/checkout/add','OrderController@add')->name('order.add');

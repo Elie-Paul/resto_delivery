@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12">
                     <div class="bradcaump__inner text-center">
-                        <h2 class="bradcaump-title">Check-out</h2>
+                        <h2 class="bradcaump-title">Check-out {{$restaurant->nom}}</h2>
                         <nav class="bradcaump-inner">
                           <a class="breadcrumb-item" href="index.html">Home</a>
                           <span class="brd-separetor"><i class="zmdi zmdi-long-arrow-right"></i></span>

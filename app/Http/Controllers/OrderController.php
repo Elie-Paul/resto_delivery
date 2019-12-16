@@ -8,6 +8,7 @@ use App\Commande;
 use App\Restaurant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
@@ -54,17 +55,27 @@ class OrderController extends Controller
                     })
                     ->get();*/
         $cmd = DB::table('commandes')->latest()->first();
-        $ds = DB::table('article_commande')->where('commande_id',$cmd->id)->get();
+
+        $clientCmd = DB::table('commandes')->join('clients', function($join){
+            $join->on('commandes.client_id','clients.id')->where('commandes.id','=',DB::table('commandes')->latest()->first()->id);
+        })->get();
+
+       // $ds = DB::table('article_commande')->where('commande_id',$cmd->id)->get();
         $commandeDetail = DB::table('articles')
-                    ->Join('article_commande', 'articles.id','article_commande.article_id')
-                    ->join('commandes', function($join){
+                    ->Join('article_commande', function($join){
+                        $join->on('articles.id','article_commande.article_id')
+                        ->where('article_commande.commande_id','=',DB::table('commandes')->latest()->first()->id);
+                    })->get();
+                    /*->join('commandes', function($join){
                         $join->on('article_commande.commande_id','commandes.id')
                             ->where('commandes.id',DB::table('commandes')->latest()->first()->id);
-                    })->join('clients', function($join){
-                        $join->on('commandes.client_id','clients.id')
-                            ->where('clients.id',DB::table('clients')->latest()->first()->id);
-                    })->get();
-        return Response()->json($commandeDetail);
+                    })->get();*/
+
+        $clientCmd[0]->articles = $commandeDetail;
+        $data = array($clientCmd[0],'data' => $commandeDetail);
+        //$data = $clientCmd;
+        //$data['donne'] = $commandeDetail;
+        return Response()->json($clientCmd[0]);
     }
 
 
@@ -72,11 +83,21 @@ class OrderController extends Controller
 
 
 
-    /*public function jsonCmd()
+    public function cmdConfirm(Request $request)
     {
-        //$client = Client::find($request->get('client_id'));
-        //$ds = DB::table('article_commande')->where('commande_id',$request->get('id'))->get();
-        $cmd = DB::table('commandes')->latest()->first();
-        return Response()->json($cmd);
-    }*/
+        $credentials = $request->json()->all();
+        //$a = (array)$credentials;
+        // Envoyer un mail au client
+        Mail::send('mails.client',['nom' => $credentials['commande']['nom'], 'prenom' => $credentials['commande']['prenom']
+
+            , 'prix_total' => $credentials['commande']['prix_total']], function($massage){
+            $massage->to('elie@gmail.com');
+        });
+
+        /*foreach($credentials['commande']['articles'] as $key){
+            return Response()->json($key['id']);
+        }*/
+
+        return Response()->json($credentials['commande']['email']);
+    }
 }

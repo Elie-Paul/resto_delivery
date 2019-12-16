@@ -200,14 +200,15 @@
                                 <img src="{{asset('images/blog/sm-img/1.jpg')}}" alt="small thumbnail">
                             </a>
                         </div-->
-                        <div class="cartbox__item__content">
+                        <!--div class="cartbox__item__content">
                             <h5><a href="product-details.html" class="product-name">Vanila Muffin</a></h5>
                             <p>Qty: <span>01</span></p>
                             <span class="price">$15</span>
                         </div>
                         <button class="cartbox__item__remove">
                             <i class="fa fa-trash"></i>
-                        </button>
+                        </button-->
+                        <input type="text" class="" value="{{$restaurant->id}}"/>
                     </div><!-- //Cartbox Single Item -->
                 </div>
                 <div class="cartbox__total">
@@ -218,7 +219,7 @@
                     </ul>
                 </div>
                 <div class="cartbox__buttons">
-                    <a class="food__btn" href="{{route('cart.index')}}"><span>Voir le panier</span></a>
+                    <a class="food__btn" href="{{route('cart.index',['restaurant' => $restaurant->id])}}"><span>Voir le panier</span></a>
                     <a class="food__btn" href="{{route('order.index',['restaurant' => $restaurant->id])}}"><span>Checkout</span></a>
                 </div>
             </div>
