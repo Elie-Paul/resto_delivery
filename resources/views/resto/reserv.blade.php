@@ -117,12 +117,28 @@
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script>
     jQuery(document).ready(function($){
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
 
      $( "#option2" ).click(function() {
         $("#collapseOne").hide();
+        alert("ttt");
         });
     $( "#option1" ).click(function() {
         $("#collapseOne").show();
+
+        $.ajax({
+            type: 'POST',
+            url: '{{ route('resto.updateReserv',['restaurant' => $restaurant->id]) }}',
+            success: function(data){
+                alert(data);
+                console.log(data);
+
+            }
+        });
         });
     });
 </script>

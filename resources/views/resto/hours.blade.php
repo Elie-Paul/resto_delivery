@@ -254,7 +254,7 @@
                 $.ajax({
                     type: 'POST',
                     url: '{{ Route('business.store', ['restaurant' => $restaurant->id]) }}',
-                    data: {jours:jours, open_time:open_time, close_time:close_time},
+                    data: {jours:jours, open_time:open_time, close_time:close_time, _token:  "{{ csrf_token() }}"},
                     success: function(data){
                         //alert("success");
                         window.location.reload() ;

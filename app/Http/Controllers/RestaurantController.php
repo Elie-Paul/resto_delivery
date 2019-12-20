@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use App\BusinessHours;
 use App\Restaurant;
-
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Hash;
 use Intervention\Image\Facades\Image;
 
 class RestaurantController extends Controller
@@ -52,7 +53,14 @@ class RestaurantController extends Controller
             'image' => $imagePath,
         ]);
 
+        $user = new User([
+            'name' => $restaurant->nom,
+            'email' => $restaurant->email,
+            'password' => Hash::make('1234')
+        ]);
+
         $restaurant->save();
+        $user->save();
 
         return back();
 

@@ -54,6 +54,8 @@ Route::patch('/admin/{restaurant}/one', 'RestaurantController@update')->name('re
 Route::patch('/admin/{restaurant}', 'RestaurantController@update_bis')->name('resto.update_bis');
 
 Route::get('/admin/resto/{restaurant}/access/reservation', 'ReservationController@index')->name('resto.reserv');
+Route::post('/admin/{restaurant}', 'ReservationController@update')->name('resto.updateReserv');
+
 
 Route::get('/admin/resto/{restaurant}/access/openhours', 'RestaurantController@openhours')->name('resto.hours');
 
@@ -80,6 +82,7 @@ Route::post('/cuisine/{restaurant}', 'CuisineController@ajouter')->name('cuisine
 
 // Heure d'ouverture
 Route::post('/business/hours/{restaurant}', 'BusinessHoursController@store')->name('business.store');
+Route::post('/json/dateheure', 'ReservationController@jsonDate')->name('resto.heure');
 
 /**Les routes de la partie client */
 

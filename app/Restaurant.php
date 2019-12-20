@@ -40,6 +40,10 @@ class Restaurant extends Model
 
     public function businesshours()
     {
-        return $this->belongsToMany(BusinessHours::class);
+        return $this->belongsToMany(BusinessHours::class)->using('App\BusinessHours_Restaurant')
+                                                            ->withPivot([
+                                                                'restaurant_id',
+                                                                'business_hours_id'
+                                                            ]);
     }
 }
