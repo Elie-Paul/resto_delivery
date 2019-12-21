@@ -34,6 +34,11 @@ class Commande extends Model
                                                     ]);
     }
 
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class);
+    }
+
     public static function createOrder($idCl, $idR)
     {
         $prix_total = \Cart::getTotal();

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Client;
+use App\Reservation;
 use App\Restaurant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -32,5 +34,32 @@ class ReservationController extends Controller
 
         //$art = DB::table('restaurant')->join('business_hours_restaurant','restaurant.id','business_hours_restaurant.restaurant_id')->get();
         return Response()->json($restoHeure);
+    }
+
+    public function store(Request $request,Restaurant $restaurant)
+    {
+        $client = new Client([
+            'nom' => $request->get('nom'),
+            'prenom' => $request->get('prenom'),
+            'adresse' => $request->get('adresse'),
+            'email' => $request->get('email'),
+            'telephone' => $request->get('telephone'),
+        ]);
+        $client->save();
+
+        $reservation = new Reservation([
+            'client_id' => $client->id,
+            'restaurant_id' => $request->get('restoId'),
+            'date' => $request->get('date'),
+            'heure' => $request->get('heure'),
+            'nombre_personnes' => $request->get('nbrPers'),
+            'designiation' => $request->get('designation')
+        ]);
+
+        $reservation->save();
+
+        return Response()->json("true");
+
+
     }
 }

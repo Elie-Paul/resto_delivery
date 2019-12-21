@@ -173,20 +173,15 @@
                             <p>
                                 <div class="card">
                                     <div class="card-body card-block" id="art">
-                                        <form action=" # " method="POST" class="formArt" enctype="multipart/form-data">
+                                        <form action=" {{ route('reserv.store') }} " method="POST" class="formArt" enctype="multipart/form-data">
                                             @csrf
                                             <div class="form-group">
                                                 <label for="exampleFormControlSelect1">Nombre de personne(s)</label>
-                                                <select id="personnes" class="form-control" id="exampleFormControlSelect1">
-                                                    <option>1 personne</option>
-                                                    <option>2 personnes</option>
-                                                    <option>3 personnes</option>
-                                                    <option>4 personnes</option>
-                                                    <option>5 personnes</option>
-                                                    <option>6 personnes</option>
-                                                    <option>7 personnes</option>
-                                                    <option>8 personnes</option>
-                                                </select>
+                                                <input type="number" id="personne" name="personne" class="form-control" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleFormControlSelect1">Objet</label>
+                                                <input type="text" id="desi" name="designation" class="form-control" />
                                             </div>
                                             <!--div class="form-group">
                                                 <label for="exampleFormControlSelect1">Date</label>
@@ -226,7 +221,7 @@
                                                     <label> Heure  </label>
                                                 <input type="time" id="time" name="time" class="form-control">
                                             </div>
-                                            <button  class="btn btn-success" id="addArt"> Ajouter <i class="fa fa-arrow-right"></i> </button>
+                                            <button  class="btn btn-danger" id="addArt"> Ajouter <i class="fa fa-arrow-right"></i> </button>
                                         </form>
                                     </div>
                                 </div>
@@ -267,7 +262,71 @@
         </div>
     </section>
     <!-- End Download App Area -->
+<!-- Modal confirmation -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <p><h3>voulez-vous passez une commande ?</h3></p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" id="passeCmd">Oui</button>
+            <button type="button" class="btn btn-danger" id="testet" data-dismiss="modal">Non</button>
+        </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal client -->
+<div class="modal fade" id="example1Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                <form action="#" method="POST" class="billing-form checkout-form">
+                        @csrf
+                        <div class="row">
+                            <div class="col-md-6 col-12 mb--20">
+                                <input type="text" placeholder="nom" name="nom" id="nom">
+                            </div>
+                            <div class="col-md-6 col-12 mb--20">
+                                <input type="text" placeholder="prenom" name="prenom" id="prenom">
+                            </div>
+                            <div class="col-12 mb--20">
+                                <input placeholder="Adresse" type="text" name="adresse" id="adresse">
+                            </div>
+                            <div class="col-md-6 col-12">
+                                <input type="email" placeholder="email" name="email" id="email">
+                            </div>
+                            <div class="col-md-6 col-12">
+                                <input placeholder="Numero de telephone" type="text" id="telephone">
+                            </div>
+                            <div class="col-md-6 col-12">
+                                <input id="restoId" class="hidden" type="text" value="{{$restaurant->id}}">
+                            </div>
+                            <div class="col-12 mb--20 mt-4">
+                                <button type="button" class="btn btn-secondary" id="reserver">Réserver</button>
+                                <button type="button" class="btn btn-danger" id="ann" data-dismiss="modal">Annuler</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script>
 jQuery(document).ready(function($){
 
@@ -281,8 +340,59 @@ jQuery(document).ready(function($){
         e.preventDefault();
         let date = document.getElementById('date').value;
         let heure = document.getElementById('time').value;
-        let nbrPers = $("#personnes option:selected").text();
+        let nbrPers = $("#personne").val();
+        let designation = $("#desi").val();
+
+        if (date === '' && heure === '' && nbrPers === '' && designation === '') {
+            alert("Veillez remplir tous les champs !!!");
+        } else {
+
+
         console.log(date+'-----'+nbrPers+'-----'+heure);
+
+        jQuery('#exampleModal').modal('show');
+
+        $("#testet").click(function(e){
+            e.preventDefault();
+
+            jQuery('#example1Modal').modal('show');
+
+// Traitement de la reservation //////
+            $("#reserver").click(function(e){
+                e.preventDefault();
+                let nom = $('#nom').val();
+                let prenom = $('#prenom').val();
+                let adresse = $('#adresse').val();
+                let telephone = $('#telephone').val();
+                let email = $('#email').val();
+                let restoId = $('#restoId').val();
+                console.log(restoId);
+
+                //alert("dddd"+nom);
+
+                if (nom === "" || telephone === "" || adresse === "") {
+                    //alert('Ajoutez au moins votre nom et votre numéro de telephone' );
+                    Swal.fire('Renseignez votre nom, votre numéro de telephone et votre adresse');
+                }else{
+                    $.ajax({
+                        type: 'POST',
+                        url: '{{ route('reserv.store') }}',
+                        data: {nom: nom,prenom: prenom,adresse: adresse,telephone: telephone,email: email, restoId: restoId,date: date,heure: heure, nbrPers: nbrPers, designation: designation, _token:  "{{ csrf_token() }}"},
+                        success: function(data){
+                            Swal.fire('Votre réservation à été envoyé avec succès !!!');
+                            console.log(data);
+                        }
+                    });
+                }
+            });
+        });
+
+        $("#passeCmd").click(function(e){
+            e.preventDefault();
+            location.href = '{{route('restaurant.menu',['restaurant' => $restaurant])}}';
+        });
+    }
+
 
     });
 

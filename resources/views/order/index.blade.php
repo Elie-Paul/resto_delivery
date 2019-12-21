@@ -50,7 +50,7 @@
                                     <input placeholder="Numero de telephone" type="text" id="telephone">
                                 </div>
                                 <div class="col-md-6 col-12">
-                                    <input placeholder="Numero de telephone" id="restoId" class="hidden" type="text" id="telephone" value="{{$restaurant->id}}">
+                                    <input id="restoId" class="hidden" type="text" id="telephone" value="{{$restaurant->id}}">
                                 </div>
                                 <div class="col-12 mb--20 mt-4">
                                     <!--button class="food__btn">

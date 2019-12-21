@@ -55,6 +55,7 @@ Route::patch('/admin/{restaurant}', 'RestaurantController@update_bis')->name('re
 
 Route::get('/admin/resto/{restaurant}/access/reservation', 'ReservationController@index')->name('resto.reserv');
 Route::post('/admin/{restaurant}', 'ReservationController@update')->name('resto.updateReserv');
+Route::post('/admin/reservation/test', 'ReservationController@store')->name('reserv.store');
 
 
 Route::get('/admin/resto/{restaurant}/access/openhours', 'RestaurantController@openhours')->name('resto.hours');
@@ -71,7 +72,7 @@ Route::delete('/admin/category/{category}', 'CategoryController@destroy')->name(
 // CRUD ARTICLE
 //Route::get('/admin/resto/{restaurant}/menu/{category}/article', 'ArticleController@index')->name('article.index');
 //Route::post('/admin/article/{category}', 'ArticleController@store')->name('article.store');
-Route::post('/admin/article', 'ArticleController@store')->name('article.store');
+Route::post('/admin/article/t', 'ArticleController@store')->name('article.store');
 
 
 Route::get('/admin/resto/{restaurant}/access/cuisine', 'CuisineController@index')->name('resto.cuisine');
@@ -87,7 +88,7 @@ Route::post('/json/dateheure', 'ReservationController@jsonDate')->name('resto.he
 /**Les routes de la partie client */
 
 // route menu des categories
-Route::get('/restaurant/menu/{restaurant}', 'MenuController@menu')->name('restaurant.menu');
+Route::get('/restaurant/menu/{restaurant}/{reservation?}', 'MenuController@menu')->name('restaurant.menu');
 
 // route menu article
 Route::get('/restaurant/menu/{category}/{restaurant}/article','MenuController@menuArticle')->name('restaurant.article');

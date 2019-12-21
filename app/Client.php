@@ -16,12 +16,18 @@ class Client extends Model
         'nom',
         'prenom',
         'adresse',
-        'email'
+        'email',
+        'telephone'
     ];
 
     public function commandes()
     {
         return $this->hasMany(Commande::class);
+    }
+
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class);
     }
 
 
