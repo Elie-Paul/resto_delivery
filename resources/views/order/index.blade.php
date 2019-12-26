@@ -153,7 +153,7 @@
                     $.ajax({
                     type: 'POST',
                     url: '{{ route('order.add') }}',
-                    data: {nom: nom,prenom: prenom,adresse: adresse,email: email, restoId: restoId, _token:  "{{ csrf_token() }}"},
+                    data: {nom: nom,prenom: prenom,adresse: adresse,email: email, restoId: restoId,telephone: telephone, _token:  "{{ csrf_token() }}"},
                     success: function(cmd){
                         if (cmd === "error") {
                             Swal.fire('Votre panier est vide !!!!');
@@ -165,9 +165,10 @@
                                 url: '{{ route('cmd.article') }}',
                                 data: {id: cmd.id,client_id: cmd.client_id,nbr_art: cmd.nombre_article,prix_total: cmd.prix_total,resto_id: cmd.restaurant_id,dateC: cmd.created_at},
                                 success: function(cmdSend){
-                                    alert(cmdSend);
+                                    //alert(cmdSend);
                                     console.log(cmdSend);
 
+                                    location.href = "/"
                                 }
                             });
                         }

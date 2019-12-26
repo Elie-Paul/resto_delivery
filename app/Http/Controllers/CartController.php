@@ -41,6 +41,16 @@ class CartController extends Controller
         return Response()->json($cart);
     }
 
+    public function updateItem(Request $request)
+    {
+        $id = $request->get('id');
+        $qty = $request->get('qte');
+        \Cart::update($id,array(
+            'quantity' => $qty
+        ));
+        return back();
+    }
+
     public function removeItem(Article $article)
     {
         \Cart::remove($article->id);

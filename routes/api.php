@@ -26,3 +26,7 @@ Route::get('/admin/resto/list', 'RestaurantController@index')->name('resto.list'
 Route::get('/json/commande', 'OrderController@jsonCmd')->name('cmd.article');
 Route::post('/json/commande/confirmation', 'OrderController@cmdConfirm');
 Route::post('/checkout/add','OrderController@add')->name('order.add');
+
+Route::get('/json/reservation', 'ReservationController@jsonReserv')->name('reserv.json');
+Route::post('/json/Reservation/confirmation','ReservationController@reservConfirm');
+Route::post('/admin/reservation/test', 'ReservationController@store')->name('reserv.store');

@@ -32,6 +32,7 @@
                                     <th class="product-quantity">Quantité</th>
                                     <th class="product-subtotal">Total</th>
                                     <th class="product-remove">Supprimer</th>
+                                    <th class="product-remove">Modifier</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -39,9 +40,10 @@
                                     <tr>
                                         <td class="product-name"><a href="#">{{$item->name}}</a></td>
                                         <td class="product-price"><span class="amount">{{$item->price}}</span></td>
-                                        <td class="product-quantity"><input type="number" value="{{$item->quantity}}" /></td>
+                                        <td class="product-quantity"><input type="number" id="qtes" value="{{$item->quantity}}" /></td>
                                         <td class="product-subtotal">{{$item->price * $item->quantity}}</td>
                                         <td class="product-remove"><a href="{{route('cart.remove', ['article' => $item->id])}}">X</a></td>
+                                        <td class="product-remove"><a class="update" id="{{$item->id}}"><i class="fa fa-pencil"></i></a></td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -50,9 +52,9 @@
                 </form>
                 <div class="cartbox__btn">
                     <ul class="cart__btn__list d-flex flex-wrap flex-md-nowrap flex-lg-nowrap justify-content-between">
-                        <li><a href="#">Coupon Code</a></li>
+                        <!--li><a href="#">Coupon Code</a></li>
                         <li><a href="#">Apply Code</a></li>
-                        <li><a href="#">Update Cart</a></li>
+                        <li><a id="update" href="#">Modifier le panier</a></li-->
                         <li><a href="{{route('order.index',['restaurant' => $restaurant->id])}}">Checkout</a></li>
                     </ul>
                 </div>
@@ -90,20 +92,22 @@
                 }
             });
 
-            $("#next").click(function(e){
+            $(".update").click(function(e){
                 e.preventDefault();
+                var id = $(this).attr('id');
+                let qte = $("#qtes").val();
 
-
-                /*$.ajax({
-                    type: 'PATCH',
-                    url: '{{ Route('resto.update', ['restaurant' => $restaurant->id]) }}',
-                    data: {nom:nom, tel1:tel1, ville:ville, code_postal:code_postal, num_rue:num_rue, _token:  "{{ csrf_token() }}"},
+//alert(qte);
+                $.ajax({
+                    type: 'POST',
+                    url: '{{ Route('cart.update') }}',
+                    data: {id: id,qte: qte, _token:  "{{ csrf_token() }}"},
                     success: function(data){
                         alert("success");
-                        window.location.href = '{{Route('resto.cuisine', ['restaurant' => $restaurant->id])}}' ;
+                        //window.location.href = '{{Route('resto.cuisine', ['restaurant' => $restaurant->id])}}' ;
                         //window.location.reload();
                     }
-                });*/
+                });
 
             });
       } );

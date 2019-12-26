@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Article;
 use App\Client;
 use App\Commande;
+use App\Reservation;
 use App\Restaurant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -31,13 +32,25 @@ class OrderController extends Controller
                 'prenom' => $request->get('prenom'),
                 'adresse' => $request->get('adresse'),
                 'email' => $request->get('email'),
+                'telephone' => $request->get('telephone'),
             ]);
 
             $client->save();
 
+            /*$reservation = new Reservation([
+                'client_id' => $client->id,
+                'restaurant_id' => $request->get('restId'),
+                'date' => $request->get('date'),
+                'heure' => $request->get('heure'),
+                'nombre_personnes' => $request->get('nbrPers'),
+                'designiation' => $request->get('designation')
+            ]);
+
+            $reservation->save();*/
+
             //$client = DB::table('clients')->latest()->first();
-            $restaurant = DB::table('restaurants')->latest()->first();
-            $cmd = Commande::createOrder($client->id,$restaurant->id);
+            $restaurant = $request->get('restoId');
+            $cmd = Commande::createOrder($client->id,$restaurant);
             \Cart::clear();
             return Response()->json($cmd);
         }

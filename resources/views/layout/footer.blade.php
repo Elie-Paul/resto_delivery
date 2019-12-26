@@ -208,7 +208,7 @@
                         <button class="cartbox__item__remove">
                             <i class="fa fa-trash"></i>
                         </button-->
-                        <input type="text" class="" value="{{$restaurant->id}}"/>
+                        <input type="text" class="hidden" value="{{$restaurant->id}}"/>
                     </div><!-- //Cartbox Single Item -->
                 </div>
                 <div class="cartbox__total">

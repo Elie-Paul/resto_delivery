@@ -53,7 +53,7 @@
                                         <p>Lorem ipsum dolor sit aLorem ipsum dolor sit amet, consectetu adipis cing elit, sed do eiusmod tempor incididunt ut labore et dolmagna aliqua. enim ad minim veniam, quis nomagni dolores eos qnumquam.</p>
                                         <div class="list__btn">
                                             <!--a class="food__btn grey--btn theme--hover" href="{{route('restaurant.article',['category' => $category->id, 'restaurant' => $restaurant->id])}}">Voir les plats</a-->
-                                            <button class="btn btn-info" id="{{$category->id}}">Voir</button>
+                                            <button class="btn btn-danger btn-lg" id="{{$category->id}}">Voir les différents articles</button>
                                         </div>
                                     </div>
                                 </div>
@@ -107,7 +107,7 @@
             }
         });
 
-        $(".btn-info").click(function(){
+        $(".btn-danger").click(function(){
             var id = $(this).attr('id');
 
             $.ajax({
@@ -147,7 +147,7 @@
                                         showConfirmButton: false,
                                         timer: 2000
                                     });
-                                    window.location.reload();
+                                    //window.location.reload();
                                 }
                             });
                         });

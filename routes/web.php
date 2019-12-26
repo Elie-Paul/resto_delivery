@@ -14,8 +14,9 @@
 Route::get('/', function () {
 
     $restaurants = \App\Restaurant::all();
+    $reservation = Illuminate\Support\Facades\DB::table('reservations')->latest()->first();
     //$cart = \Cart::getContent();
-    return view('index',compact('restaurants'));
+    return view('index',compact('restaurants','reservation'));
 });
 
 //// ROUTE JSON AJAX ///////////
@@ -30,6 +31,7 @@ Route::get('/json/commande/last', 'OrderController@jsonCmd')->name('cmd.article'
 Route::get('/cart/{restaurant}','CartController@index')->name('cart.index');
 Route::post('/cart/add/{restaurant}','CartController@addItem')->name('cart.add');
 Route::get('/cart/add/{article}','CartController@removeItem')->name('cart.remove');
+Route::post('/cart/update','CartController@updateItem')->name('cart.update');
 //Cart end
 
 // Checkout
@@ -45,7 +47,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/admin', 'AdminController@index')->name('admin');
 
 Route::get('/admin/resto/list', 'RestaurantController@index')->name('resto.list');
-Route::post('/restaurants', 'RestaurantController@store')->name('resto.store');
+Route::post('/restaurants/t', 'RestaurantController@store')->name('resto.store');
 
 Route::get('/admin/resto/pop', 'RestaurantController@populaire')->name('resto.pop');
 

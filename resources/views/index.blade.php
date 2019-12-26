@@ -141,9 +141,6 @@
                                         <div class="col-md-6 mt-2">
                                             <!--button class="btn btn-danger">Voir le menu</button-->
                                             <a href="{{route('restaurant.menu',['restaurant' => $restaurant])}}">Voir le menu</a>
-                                            <!--span class="glf-button" data-glf-cuid="9e78b3e2-d7f5-4f84-838f-c5decd2f9caa" data-glf-ruid="026b18ca-746e-4aec-9a05-2fed59ae3f49" > Commandez maintenant</span>
-<span class="glf-button reservation" data-glf-cuid="9e78b3e2-d7f5-4f84-838f-c5decd2f9caa" data-glf-ruid="026b18ca-746e-4aec-9a05-2fed59ae3f49" data-glf-reservation="true" > Réservation de table </span>
-<script src="https://www.fbgcdn.com/embedder/js/ewm2.js" defer async ></script-->
                                         </div>
                                         <div class="col-md-6 mt-2">
                                             <!--button class="btn btn-info">Réserver une table</button-->
@@ -183,43 +180,14 @@
                                                 <label for="exampleFormControlSelect1">Objet</label>
                                                 <input type="text" id="desi" name="designation" class="form-control" />
                                             </div>
-                                            <!--div class="form-group">
-                                                <label for="exampleFormControlSelect1">Date</label>
-                                                <select class="form-control" id="exampleFormControlSelect1">
-                                                    <option>Aujourd'hui</option>
-                                                    <option>Demain</option>
-                                                </select>
-                                            </div-->
                                             <div class="form-group date " id='datetimepicker2'>
                                                     <label> Date  </label>
                                                 <input type="date" id="date" name="date" class="form-control">
                                             </div>
-                                            <!--div class="form-group">
-                                                <label for="exampleFormControlSelect1">Heure</label>
-                                                <select class="form-control" id="exampleFormControlSelect1">
-                                                    <option>10:30</option>
-                                                    <option>11:00</option>
-                                                    <option>11:30</option>
-                                                    <option>12:00</option>
-                                                    <option>12:30</option>
-                                                    <option>13:00</option>
-                                                    <option>13:30</option>
-                                                    <option>14:00</option>
-                                                    <option>14:30</option>
-                                                    <option>15:00</option>
-                                                    <option>15:30</option>
-                                                    <option>16:00</option>
-                                                    <option>16:30</option>
-                                                    <option>17:00</option>
-                                                    <option>17:30</option>
-                                                    <option>18:00</option>
-                                                    <option>18:30</option>
-                                                    <option>19:00</option>
-                                                </select>
-                                            </div-->
                                             <div class="form-group date " id='datetimepicker2'>
                                                     <label> Heure  </label>
                                                 <input type="time" id="time" name="time" class="form-control">
+                                                <input type="text" id="restId" class="hidden" value="{{$restaurant->id}}" class="form-control">
                                             </div>
                                             <button  class="btn btn-danger" id="addArt"> Ajouter <i class="fa fa-arrow-right"></i> </button>
                                         </form>
@@ -342,6 +310,7 @@ jQuery(document).ready(function($){
         let heure = document.getElementById('time').value;
         let nbrPers = $("#personne").val();
         let designation = $("#desi").val();
+        let restId = $('#restId').val();
 
         if (date === '' && heure === '' && nbrPers === '' && designation === '') {
             alert("Veillez remplir tous les champs !!!");
@@ -378,9 +347,21 @@ jQuery(document).ready(function($){
                         type: 'POST',
                         url: '{{ route('reserv.store') }}',
                         data: {nom: nom,prenom: prenom,adresse: adresse,telephone: telephone,email: email, restoId: restoId,date: date,heure: heure, nbrPers: nbrPers, designation: designation, _token:  "{{ csrf_token() }}"},
-                        success: function(data){
+                        success: function(res){
                             Swal.fire('Votre réservation à été envoyé avec succès !!!');
-                            console.log(data);
+                            console.log(res);
+
+                            $.ajax({
+                                type: 'GET',
+                                url: '{{ route('reserv.json') }}',
+                                data: {res: res},
+                                success: function(cmdSend){
+                                    alert(cmdSend);
+                                    console.log(cmdSend);
+                                    window.location.reload();
+
+                                }
+                            });
                         }
                     });
                 }
@@ -400,16 +381,7 @@ jQuery(document).ready(function($){
             var id = $(this).attr('id');
             //alert(id);
 
-            /*$.ajax({
-                type: 'POST',
-                url: '{{route('resto.heure')}}',
-                data: {id: id, _token:  "{{ csrf_token() }}"},
-                success:function(data){
-                    console.log(data);
-                }
-            });*/
 
-           // $('#ad').append('<div class="form-group col">  <input type="hidden" name="category_id" value='+id+' /> </div>');
     });
 
 });

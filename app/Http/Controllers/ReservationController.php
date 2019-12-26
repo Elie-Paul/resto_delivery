@@ -58,8 +58,32 @@ class ReservationController extends Controller
 
         $reservation->save();
 
+        $r = Restaurant::find($request->get('restoId'));
+
+        $client->dateR = $reservation->date;
+        $client->heureR = $reservation->heure;
+        $client->nbrPers = $reservation->nombre_personnes;
+        $client->titre = $reservation->designiation;
+        $client->nomResto = $r->nom;
+        $client->emailR = $r->email;
+
+        return Response()->json($client);
+
+
+    }
+
+    public function jsonReserv(Request $request)
+    {
+        //$clientR = DB::table('clients')->latest()->first();
+        $reservation = DB::table('reservations')->latest()->first();
+        $reservationClient = DB::table('reservations')->join('clients', function($join){
+            $join->on('reservations.client_id','clients.id')->where('reservations.id','=',DB::table('reservations')->latest()->first()->id);
+        })->get();
+        return Response()->json($reservationClient[0]);
+    }
+
+    public function reservConfirm(Request $request)
+    {
         return Response()->json("true");
-
-
     }
 }
