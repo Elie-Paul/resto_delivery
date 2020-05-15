@@ -11,7 +11,7 @@
                         <div class="slider__content">
                             <div class="slider__inner">
                                 <h2>“Gaaw Food”</h2>
-                                <h1>Livraison de nourriture et service</h1>
+                                <h1>Livraison de nourriture et réservation de table</h1>
                                 <!--div class="slider__input">
                                     <input type="text" placeholder="Type Place, City.Division">
                                     <input class="res__search" type="text" placeholder="Restaurant">

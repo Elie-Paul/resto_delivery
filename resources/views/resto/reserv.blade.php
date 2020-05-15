@@ -134,7 +134,7 @@
             type: 'POST',
             url: '{{ route('resto.updateReserv',['restaurant' => $restaurant->id]) }}',
             success: function(data){
-                alert(data);
+                //alert(data);
                 console.log(data);
 
             }

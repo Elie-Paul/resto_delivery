@@ -55,7 +55,7 @@
             <div class="card-body">
                 <div class="rows">
                     <button class="btn btn-secondary" id="btnCat" data-toggle="modal" data-target="#scrollmodal">Ajouter une catégorie</button>
-                    <button class="btn btn-primary" id="btnCat">Ajouter une extension</button>
+                    <!--button class="btn btn-primary" id="btnCat">Ajouter une extension</button-->
                     <div class="float-right">
                         <a class="btn btn-info float-right mr-2 mb-2" href="{{Route('resto.list', ['restaurant' => $restaurant->id])}}" id="finished" role="button"><b>Terminer</b> </a>
                     </div>
@@ -99,7 +99,7 @@
             <div class="card-body">
                 <div class="rows">
                     <button class="btn btn-secondary" id="btnCat" data-toggle="modal" data-target="#scrollmodal">Ajouter une catégorie</button>
-                    <button class="btn btn-primary" id="btnCat">Ajouter une extension</button>
+                    <!--button class="btn btn-primary" id="btnCat">Ajouter une extension</button-->
                     <div class="float-right">
                         <a class="btn btn-info float-right mr-2 mb-2" href="#" role="button"><b>Suivant</b>  <i class="fa fa-arrow-right"></i></a>
                     </div>

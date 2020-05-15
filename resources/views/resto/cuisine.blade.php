@@ -144,7 +144,7 @@
                     url: '{{ Route('cuisine.ajouter', ['restaurant' => $restaurant->id, 'id' => $cuisine->id]) }}',
                     data: {id:id},// Le premier id représente le 'id' dans la route comme paramètre
                     success: function(data){
-                        alert("success");
+                        //alert("success");
                         window.location.reload() ;
                     }
                 });

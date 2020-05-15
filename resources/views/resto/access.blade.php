@@ -145,7 +145,7 @@
                     url: '{{ Route('resto.update', ['restaurant' => $restaurant->id]) }}',
                     data: {nom:nom, tel1:tel1, ville:ville, code_postal:code_postal, num_rue:num_rue, _token:  "{{ csrf_token() }}"},
                     success: function(data){
-                        alert("success");
+                        //alert("success");
                         window.location.href = '{{Route('resto.cuisine', ['restaurant' => $restaurant->id])}}' ;
                         //window.location.reload();
                     }
